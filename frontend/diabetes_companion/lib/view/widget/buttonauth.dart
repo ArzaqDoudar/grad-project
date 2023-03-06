@@ -1,44 +1,33 @@
+import 'package:diabetes_companion/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/constant/color.dart';
-import '../screen/auth/forgetpassword/newpassword.dart';
-
 class ButtonAuth extends StatelessWidget {
-  // final void fun();
   final String label;
-  const ButtonAuth({
-    super.key,
-    // required this.fun,
-    required this.label,
-  });
+  final VoidCallback onPressedFun;
+
+  const ButtonAuth(
+      {super.key, required this.label, required this.onPressedFun});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 70),
-      child: ElevatedButton(
-        // style: ElevatedButton(style: ButtonStyle()),
-        // onPressed: fun,
-        onPressed: () {
-          // Navigator.pushNamed(context, '/Login');\
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const NewPassword()));
-        },
+    return SizedBox(
+      width: double.infinity,
+      child: FilledButton(
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          backgroundColor: ColorApp.blue,
+          padding: const EdgeInsets.all(10),
+          textStyle: const TextStyle(fontSize: 20),
+          alignment: const Center().alignment,
+        ),
+        onPressed: onPressedFun,
         child: Text(label),
       ),
     );
   }
 }
-// () {
-//           // Navigator.pushNamed(context, '/Login');\
-//           Navigator.push(
-//               context,
-//               MaterialPageRoute(
-//                   builder: (context) =>
-//                       const NewPassword()));
-//         }
-
-
 
 
 
