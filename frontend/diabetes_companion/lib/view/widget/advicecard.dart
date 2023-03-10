@@ -1,14 +1,15 @@
+import '/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/constant/imageasset.dart';
 
 class AdviceCard extends StatelessWidget {
   final key1 = GlobalKey();
-  final String? text;
+  final String text;
   final String? image;
   AdviceCard({
     this.image,
-    this.text,
+    required this.text,
     super.key,
   });
   @override
@@ -31,19 +32,19 @@ class AdviceCard extends StatelessWidget {
                 child: Text(
                   'نصيحة اليوم',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      color: ColorApp.darkBlue),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    text ?? '',
-                    // adviceModelList[0].text,
+                    text,
                     textDirection: TextDirection.rtl,
-                    style: const TextStyle(fontSize: 16),
+                    style:
+                        const TextStyle(fontSize: 18, color: ColorApp.darkBlue),
                   ),
                   SizedBox(
                     width: screenSize.width * 0.2,

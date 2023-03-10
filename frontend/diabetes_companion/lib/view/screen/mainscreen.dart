@@ -29,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
   get getIndex => index;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext maincontext) {
     // BottomBar bottomBar = const BottomBar();
     // int index = bottomBar.getIndex();
     final items = <Widget>[
@@ -74,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
           backgroundColor: Colors.transparent,
           buttonBackgroundColor: ColorApp.blue,
           animationDuration: const Duration(milliseconds: 500),
-          color: const Color.fromARGB(28, 0, 89, 141),
+          color: const Color(0xFFe0e9ef),
           onTap: (index) {
             setState(() {
               this.index = index;

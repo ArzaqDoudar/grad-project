@@ -1,5 +1,6 @@
 class RouteApp {
   static const String login = "/login";
+  static const String test = "/test";
   static const String onboarding = "/onboarding";
   static const String mainscreen = "/mainscreen";
   static const String startup = "/startup";
@@ -7,4 +8,5 @@ class RouteApp {
   static const String forgetpasswordemail = "/forgetpassword";
   static const String forgetpasswordcode = "/forgetpassword/code";
   static const String newpassword = "/newpassword";
+  static const String profile = "/profile";
 }

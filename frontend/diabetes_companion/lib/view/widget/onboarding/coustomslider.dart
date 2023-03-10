@@ -24,7 +24,7 @@ class CoustomeSlider extends GetView<OnBoardingControllerImp> {
               onBoardingList[i].title!,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: 30,
               ),
             ),
           ),
@@ -43,7 +43,10 @@ class CoustomeSlider extends GetView<OnBoardingControllerImp> {
               onBoardingList[i].body!,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                  height: 2, color: ColorApp.grey, fontWeight: FontWeight.bold),
+                  height: 2,
+                  color: ColorApp.grey,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
             ),
           ),
         ],

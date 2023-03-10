@@ -1,13 +1,43 @@
-import 'package:diabetes_companion/core/constant/color.dart';
-import 'package:diabetes_companion/core/constant/imageasset.dart';
-import 'package:diabetes_companion/core/constant/routes.dart';
-import 'package:diabetes_companion/view/widget/buttonauth.dart';
+import '/core/constant/color.dart';
+import '/core/constant/imageasset.dart';
+import '/core/constant/routes.dart';
+import '/view/widget/buttonauth.dart';
+import '/view/widget/customtextbutton.dart';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import '../../widget/textfieldauth.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => LoginState();
+}
+
+class LoginState extends State<Login> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool _isNotValidate = false;
+  // void loginUser(emailController, passwordController) async {
+  //   if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+  //     var loginBody = {
+  //       "email": emailController.text,
+  //       "password": passwordController.text,
+  //     };
+  //     var response = await http.post(
+  //       Uri.parse('uri'),
+  //       headers: {"Content-type": "application/json"},
+  //       body: jsonEncode(loginBody),
+  //     );
+
+  //     print(response);
+  //   } else {
+  //     setState(() {
+  //       _isNotValidate = false;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +62,11 @@ class Login extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.end,
-
-                        //email textfield
                         children: <Widget>[
                           const TextFieldAuth(
+                            // isNotValidate: _isNotValidate,
+                            // textEditingController: emailController,
                             passwordVisible: false,
                             lable: 'البريد الإلكتروني',
                             icon: Icon(
@@ -48,6 +76,8 @@ class Login extends StatelessWidget {
                           ),
                           const SizedBox(height: 7),
                           const TextFieldAuth(
+                            // isNotValidate: _isNotValidate,
+                            // textEditingController: passwordController,
                             passwordVisible: true,
                             lable: 'كلمة المرور',
                             icon: Icon(
@@ -64,61 +94,27 @@ class Login extends StatelessWidget {
                               Navigator.pushNamed(context, RouteApp.mainscreen);
                             },
                           ),
-                          const SizedBox(height: 7),
 
-                          //not member? sign up
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 0),
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                foregroundColor: Colors.transparent,
-                                shadowColor: Colors.transparent,
-                                backgroundColor: Colors.transparent,
-                                textStyle: const TextStyle(fontSize: 20),
-                                alignment: const Center().alignment,
+                          //not member? sign up or forget my pass?
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CustomTextButton(
+                                label: 'هل نسيت كلمة المرور؟',
+                                onPressedFun: () {
+                                  Navigator.pushNamed(
+                                      context, RouteApp.forgetpasswordemail);
+                                },
                               ),
-                              onPressed: () {
-                                Navigator.pushNamed(context, RouteApp.signup);
-                              },
-                              child: const SizedBox(
-                                child: Text(
-                                  'حساب جديد؟',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17,
-                                      decoration: TextDecoration.underline,
-                                      color: ColorApp.darkBlue),
-                                ),
+                              CustomTextButton(
+                                label: 'حساب جديد؟',
+                                onPressedFun: () {
+                                  Navigator.pushNamed(context, RouteApp.signup);
+                                },
                               ),
-                            ),
+                            ],
                           ),
-                          //forget my pass?
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 0),
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                  foregroundColor: Colors.transparent,
-                                  shadowColor: Colors.transparent,
-                                  backgroundColor: Colors.transparent,
-                                  textStyle: const TextStyle(fontSize: 20),
-                                  alignment: const Center().alignment),
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, RouteApp.forgetpasswordemail);
-                              },
-                              child: const Text(
-                                'هل نسيت كلمة السر؟',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17,
-                                    decoration: TextDecoration.underline,
-                                    color: ColorApp.darkBlue),
-                              ),
-                            ),
-                          ),
-                          // const SizedBox(height: 5),
+                          const SizedBox(height: 50),
                         ],
                       ),
                     ),

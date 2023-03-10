@@ -1,3 +1,4 @@
+import '/view/widget/dropdownitems.dart';
 import 'package:flutter/material.dart';
 import '../widget/advicecard.dart';
 import '/data/datasource/static/staticadvice.dart';
@@ -27,6 +28,7 @@ class Home extends StatelessWidget {
             text: adviceModelList[0].text,
             image: adviceModelList[0].image,
           ),
+          const CustomDropdownMenu()
         ],
       ),
     ]);

@@ -5,8 +5,18 @@ import '../../../../core/constant/routes.dart';
 import '../../../../core/constant/color.dart';
 import '../../../widget/textfieldauth.dart';
 
-class NewPassword extends StatelessWidget {
+TextEditingController emailController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
+bool _isNotValidate = false;
+
+class NewPassword extends StatefulWidget {
   const NewPassword({super.key});
+
+  @override
+  State<NewPassword> createState() => NewPasswordState();
+}
+
+class NewPasswordState extends State<NewPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +46,8 @@ class NewPassword extends StatelessWidget {
                   ),
                   const SizedBox(height: 7),
                   const TextFieldAuth(
+                    // isNotValidate: _isNotValidate,
+                    // textEditingController: emailController,
                     passwordVisible: true,
                     lable: 'كلمة المرور',
                     icon: Icon(
@@ -45,8 +57,10 @@ class NewPassword extends StatelessWidget {
                   ),
                   const SizedBox(height: 7),
                   const TextFieldAuth(
+                    // isNotValidate: _isNotValidate,
+                    // textEditingController: emailController,
                     passwordVisible: true,
-                    lable: 'كلمة المرور',
+                    lable: 'تأكيد كلمة المرور',
                     icon: Icon(
                       Icons.lock_outline_rounded,
                       color: ColorApp.blue,
@@ -54,7 +68,7 @@ class NewPassword extends StatelessWidget {
                   ),
                   const SizedBox(height: 7),
                   ButtonAuth(
-                    label: 'تغيير',
+                    label: 'تغيير كلمة المرور ',
                     onPressedFun: () {
                       Navigator.pushNamed(context, RouteApp.login);
                     },

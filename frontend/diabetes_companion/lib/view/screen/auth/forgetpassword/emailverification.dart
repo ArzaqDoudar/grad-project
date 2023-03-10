@@ -5,9 +5,14 @@ import '../../../../core/constant/imageasset.dart';
 import '../../../../core/constant/routes.dart';
 import '../../../widget/textfieldauth.dart';
 
-class EmailVerification extends StatelessWidget {
+class EmailVerification extends StatefulWidget {
   const EmailVerification({super.key});
 
+  @override
+  State<EmailVerification> createState() => EmailVerificationState();
+}
+
+class EmailVerificationState extends State<EmailVerification> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,10 +42,12 @@ class EmailVerification extends StatelessWidget {
                   ),
                   const SizedBox(height: 7),
                   const TextFieldAuth(
+                    // isNotValidate: _isNotValidate,
+                    // textEditingController: emailController,
                     passwordVisible: false,
-                    lable: 'كلمة المرور',
+                    lable: '',
                     icon: Icon(
-                      Icons.lock_outline_rounded,
+                      Icons.email_outlined,
                       color: ColorApp.blue,
                     ),
                   ),

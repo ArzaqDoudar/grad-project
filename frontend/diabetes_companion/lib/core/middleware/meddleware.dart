@@ -1,5 +1,5 @@
-import 'package:diabetes_companion/core/constant/routes.dart';
-import 'package:diabetes_companion/core/services/services.dart';
+import '/core/constant/routes.dart';
+import '/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

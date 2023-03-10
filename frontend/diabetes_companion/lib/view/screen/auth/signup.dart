@@ -1,10 +1,44 @@
-import 'package:diabetes_companion/core/constant/imageasset.dart';
+import 'dart:convert';
+
+import '/core/constant/color.dart';
+import '/core/constant/routes.dart';
+import '/view/widget/buttonauth.dart';
+import '/view/widget/customtextbutton.dart';
+import 'package:http/http.dart' as http;
+import '/view/widget/textfieldauth.dart';
+import '/core/constant/imageasset.dart';
 import 'package:flutter/material.dart';
 
-import 'login.dart';
-
-class Signup extends StatelessWidget {
+class Signup extends StatefulWidget {
   const Signup({super.key});
+
+  @override
+  State<Signup> createState() => SignupState();
+}
+
+class SignupState extends State<Signup> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool _isNotValidate = false;
+  void signupUser() async {
+    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+      var loginBody = {
+        "email": emailController.text,
+        "password": passwordController.text,
+      };
+      var response = await http.post(
+        Uri.parse('uri'),
+        headers: {"Content-type": "application/json"},
+        body: jsonEncode(loginBody),
+      );
+
+      print(response);
+    } else {
+      setState(() {
+        _isNotValidate = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,188 +55,74 @@ class Signup extends StatelessWidget {
                 width: double.infinity,
               ),
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-
-                        //email textfield
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color:
-                                        const Color.fromRGBO(92, 174, 225, 1),
-                                  ),
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: const Padding(
-                                padding: EdgeInsets.only(right: 20, left: 20),
-                                child: TextField(
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                      prefixIcon: Icon(
-                                        Icons.email_outlined,
-                                        color: Color.fromRGBO(0, 90, 141, 1),
-                                      ),
-                                      border: InputBorder.none,
-                                      hintText: 'البريد الالكتروني',
-                                      hintStyle: TextStyle(
-                                        fontSize: 18,
-                                        color: Color.fromRGBO(0, 90, 141, 1),
-                                      ),
-                                      hintTextDirection: TextDirection.rtl),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-
-                          //password textfield
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color:
-                                        const Color.fromRGBO(92, 174, 225, 1),
-                                  ),
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: const Padding(
-                                padding: EdgeInsets.only(right: 20, left: 20),
-                                child: TextField(
-                                  obscureText: true,
-                                  decoration: InputDecoration(
-                                    prefixIcon: Icon(
-                                      Icons.lock_outline_rounded,
-                                      color: Color.fromRGBO(0, 90, 141, 1),
-                                    ),
-                                    border: InputBorder.none,
-                                    hintText: 'كلمة السر',
-                                    hintStyle: TextStyle(
-                                      fontSize: 18,
-                                      color: Color.fromRGBO(0, 90, 141, 1),
-                                    ),
-                                    hintTextDirection: TextDirection.rtl,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-
-                          //confirm password
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color:
-                                        const Color.fromRGBO(92, 174, 225, 1),
-                                  ),
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: const Padding(
-                                padding: EdgeInsets.only(right: 20, left: 20),
-                                child: TextField(
-                                  obscureText: true,
-                                  decoration: InputDecoration(
-                                    prefixIcon: Icon(
-                                      Icons.lock_outline_rounded,
-                                      color: Color.fromRGBO(0, 90, 141, 1),
-                                    ),
-                                    border: InputBorder.none,
-                                    hintText: 'تأكيد كلمة السر',
-                                    hintStyle: TextStyle(
-                                      fontSize: 18,
-                                      color: Color.fromRGBO(0, 90, 141, 1),
-                                    ),
-                                    hintTextDirection: TextDirection.rtl,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-
-                          //signup button
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                            child: FilledButton(
-                              style: ElevatedButton.styleFrom(
-                                  // minimumSize: const Size.fromWidth(50), // NEW
-
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  backgroundColor:
-                                      const Color.fromRGBO(92, 174, 225, 1),
-                                  padding: const EdgeInsets.all(10),
-                                  textStyle: const TextStyle(fontSize: 20),
-                                  alignment: const Center().alignment),
-                              onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) => const Main()));
-                              },
-                              child: const SizedBox(
-                                height: 30,
-                                width: 500,
-                                child: Text(
-                                  'انشاء حساب',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-
-                          //sign in
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 60),
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                  foregroundColor: Colors.transparent,
-                                  shadowColor: Colors.transparent,
-                                  backgroundColor: Colors.transparent,
-                                  padding: const EdgeInsets.all(10),
-                                  textStyle: const TextStyle(fontSize: 20),
-                                  alignment: const Center().alignment),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Login()));
-                              },
-                              child: const SizedBox(
-                                child: Text(
-                                  'تسجيل الدخول بدلًا من ذلك',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17,
-                                      decoration: TextDecoration.underline,
-                                      color: Color.fromRGBO(2, 46, 87, 1)),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 45),
-                        ]),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const SizedBox(height: 7),
+                  const Text(
+                    'حساب جديد ',
+                    style: TextStyle(fontSize: 40, color: ColorApp.blue),
                   ),
-                ),
-              ],
+                  const TextFieldAuth(
+                    lable: 'الاسم',
+                    passwordVisible: false,
+                    icon: Icon(Icons.abc, color: ColorApp.blue),
+                  ),
+                  const SizedBox(height: 7),
+                  const TextFieldAuth(
+                    lable: 'رقم الهوية',
+                    passwordVisible: false,
+                    icon: Icon(
+                      Icons.assignment_ind_outlined,
+                      color: ColorApp.blue,
+                    ),
+                  ),
+                  const SizedBox(height: 7),
+                  const TextFieldAuth(
+                    // isNotValidate: _isNotValidate,
+                    // textEditingController: emailController,
+                    lable: 'البريد الإلكتروني',
+                    passwordVisible: false,
+                    icon: Icon(Icons.email_outlined, color: ColorApp.blue),
+                  ),
+                  const SizedBox(height: 7),
+                  const TextFieldAuth(
+                    // isNotValidate: _isNotValidate,
+                    // textEditingController: emailController,
+                    lable: ' كلمة المرور',
+                    passwordVisible: true,
+                    icon:
+                        Icon(Icons.lock_outline_rounded, color: ColorApp.blue),
+                  ),
+                  const SizedBox(height: 7),
+                  const TextFieldAuth(
+                    // isNotValidate: _isNotValidate,
+                    // textEditingController: emailController,
+                    lable: 'تأكيد كلمة المرور',
+                    passwordVisible: true,
+                    icon: Icon(
+                      Icons.lock_outline_rounded,
+                      color: ColorApp.blue,
+                    ),
+                  ),
+                  const SizedBox(height: 7),
+                  ButtonAuth(
+                    label: 'إنشاء حساب جديد',
+                    onPressedFun: () {
+                      Navigator.pushNamed(context, RouteApp.mainscreen);
+                    },
+                  ),
+                  CustomTextButton(
+                    label: 'لدي حساب بالفعل؟',
+                    onPressedFun: () {
+                      Navigator.pushNamed(context, RouteApp.login);
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                ],
+              ),
             ),
           ],
         ),

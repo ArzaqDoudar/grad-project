@@ -1,4 +1,4 @@
-import 'package:diabetes_companion/core/constant/color.dart';
+import '/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

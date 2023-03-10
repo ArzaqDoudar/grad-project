@@ -1,3 +1,5 @@
+import '/core/constant/color.dart';
+
 import '/core/constant/imageasset.dart';
 import '/view/screen/auth/onboarding.dart';
 import 'package:flutter/material.dart';
@@ -53,40 +55,40 @@ class Startup extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 60),
-                            child: SizedBox(
-                              height: 30,
-                              width: 100,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          const OnBoarding(),
-                                    ),
-                                  );
-                                },
-                                child: const Text('Open route'),
+                          SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const OnBoarding(),
+                                  ),
+                                );
+                              },
+                              child: const Icon(
+                                Icons.arrow_forward_rounded,
+                                size: 30,
                               ),
-                              // IconButton(
-                              //   iconSize: 75,
-                              //   icon: const Icon(
-                              //       Icons.arrow_circle_right_rounded),
-                              //   color: const Color.fromRGBO(0, 90, 141, 1),
-                              //   onPressed: () {
-                              //     print('startup page');
-                              //     // Navigator.push(
-                              //     //   context,
-                              //     //   MaterialPageRoute(
-                              //     //     builder: (BuildContext context) =>
-                              //     //         const MainScreen(),
-                              //     //   ),
-                              //     // );
-                              //   },
-                              // ),
                             ),
+                            // IconButton(
+                            //   iconSize: 75,
+                            //   icon: const Icon(
+                            //       Icons.arrow_circle_right_rounded),
+                            //   color: const Color.fromRGBO(0, 90, 141, 1),
+                            //   onPressed: () {
+                            //     print('startup page');
+                            //     // Navigator.push(
+                            //     //   context,
+                            //     //   MaterialPageRoute(
+                            //     //     builder: (BuildContext context) =>
+                            //     //         const MainScreen(),
+                            //     //   ),
+                            //     // );
+                            //   },
+                            // ),
                           ),
                           const SizedBox(height: 60),
                         ]),

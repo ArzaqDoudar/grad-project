@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
 import '../../core/constant/color.dart';
+// import 'package:flutter_localizations/flutter_localizations.dart';
 
 class TextFieldAuth extends StatelessWidget {
   final String lable;
   final TextInputType? type;
   final Icon? icon;
   final bool passwordVisible;
-
-  const TextFieldAuth(
-      {super.key,
-      required this.lable,
-      this.type,
-      this.icon,
-      required this.passwordVisible});
+  // final TextEditingController textEditingController;
+  // final bool isNotValidate;
+  const TextFieldAuth({
+    super.key,
+    required this.lable,
+    this.type,
+    this.icon,
+    required this.passwordVisible,
+    // required this.textEditingController,
+    // required this.isNotValidate
+  });
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: TextFormField(
+        // controller: textEditingController,
         obscureText: passwordVisible,
         style: const TextStyle(
           fontSize: 20,
@@ -27,6 +33,7 @@ class TextFieldAuth extends StatelessWidget {
         textDirection: TextDirection.rtl,
         keyboardType: type,
         decoration: InputDecoration(
+          // errorText: isNotValidate ? 'enter data' : null,
           filled: true,
           fillColor: Colors.white,
           focusedBorder: OutlineInputBorder(

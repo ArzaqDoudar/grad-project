@@ -1,6 +1,6 @@
 // import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-// import 'package:diabetes_companion/view/screen/home.dart';
-// import 'package:diabetes_companion/view/screen/onboarding.dart';
+// import '/view/screen/home.dart';
+// import '/view/screen/onboarding.dart';
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 

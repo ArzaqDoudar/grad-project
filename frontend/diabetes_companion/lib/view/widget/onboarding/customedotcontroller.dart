@@ -14,6 +14,7 @@ class CustomeDotController extends StatelessWidget {
       builder: (controller) => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(height: 25),
           ...List.generate(
             onBoardingList.length,
             (index) => AnimatedContainer(

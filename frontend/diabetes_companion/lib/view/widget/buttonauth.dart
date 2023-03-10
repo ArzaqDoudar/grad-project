@@ -1,12 +1,13 @@
-import 'package:diabetes_companion/core/constant/color.dart';
+import '/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
 class ButtonAuth extends StatelessWidget {
   final String label;
+  final Color? color;
   final VoidCallback onPressedFun;
 
   const ButtonAuth(
-      {super.key, required this.label, required this.onPressedFun});
+      {super.key, required this.label, required this.onPressedFun, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +18,9 @@ class ButtonAuth extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          backgroundColor: ColorApp.blue,
-          padding: const EdgeInsets.all(10),
-          textStyle: const TextStyle(fontSize: 20),
+          backgroundColor: color ?? ColorApp.blue,
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          textStyle: const TextStyle(fontSize: 24),
           alignment: const Center().alignment,
         ),
         onPressed: onPressedFun,
