@@ -3,14 +3,18 @@ import 'package:diabetes_companion/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/functions/datefunction.dart';
+
 class BasicDateTimeField extends StatelessWidget {
   final format = DateFormat("yyyy-MM-dd HH:mm");
+  final TextEditingController textEditingController;
 
-  BasicDateTimeField({super.key});
+  BasicDateTimeField({super.key, required this.textEditingController});
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       DateTimeField(
+        controller: textEditingController,
         decoration: InputDecoration(
           // errorText: isNotValidate ? 'enter data' : null,
           filled: true,
@@ -47,6 +51,7 @@ class BasicDateTimeField extends StatelessWidget {
               const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         ),
         format: format,
+        onChanged: (value) => {dateFunction(textEditingController)},
         onShowPicker: (context, currentValue) async {
           return await showDatePicker(
             context: context,

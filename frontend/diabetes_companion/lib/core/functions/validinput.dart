@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-validInput(String val, int min, int max, String type) {
+validInput(String val, String type) {
   if (val.isEmpty) {
     return false;
   }
@@ -22,10 +22,11 @@ validInput(String val, int min, int max, String type) {
       return false;
     }
   }
+  return true;
 
-  if (val.length >= min && val.length <= max) {
-    return true;
-  } else {
-    return false;
-  }
+  // if (val.length >= min && val.length <= max) {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
 }

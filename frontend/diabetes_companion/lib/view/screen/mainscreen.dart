@@ -17,12 +17,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final screens = const [
+  final screens = [
     Home(),
-    ReportPage(),
-    StorePage(),
-    ProfilePage(),
-    MorePage(),
+    const ReportPage(),
+    const StorePage(),
+    const ProfilePage(),
+    const MorePage(),
   ];
   final navigationKey = GlobalKey<CurvedNavigationBarState>();
   int index = 0;

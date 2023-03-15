@@ -17,26 +17,47 @@ class Signup extends StatefulWidget {
 }
 
 class SignupState extends State<Signup> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController idController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool _isNotValidate = false;
+  TextEditingController confirmPasswordController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // nameController.text = 'ARZAQZIADDOUDAR';
+    // idController.text = '123456';
+  }
+
+  // bool _isNotValidate = false;
   void signupUser() async {
-    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+    if (idController.text.isNotEmpty &&
+        nameController.text.isNotEmpty &&
+        emailController.text.isNotEmpty &&
+        passwordController.text.isNotEmpty &&
+        confirmPasswordController.text.isNotEmpty) {
+      // nameController.text = 'ARZAQZIADDOUDAR';
       var loginBody = {
         "email": emailController.text,
         "password": passwordController.text,
+        "id": idController.text,
       };
+      print(loginBody);
       var response = await http.post(
-        Uri.parse('uri'),
+        Uri.parse('http://localhost:3000/patients'),
         headers: {"Content-type": "application/json"},
         body: jsonEncode(loginBody),
       );
-
       print(response);
+      // print(jsonEncode(loginBody));
     } else {
-      setState(() {
-        _isNotValidate = false;
-      });
+      print('loginBody');
+
+      // setState(() {
+      //   _isNotValidate = false;
+      // });
     }
   }
 
@@ -65,44 +86,47 @@ class SignupState extends State<Signup> {
                     'حساب جديد ',
                     style: TextStyle(fontSize: 40, color: ColorApp.blue),
                   ),
-                  const TextFieldAuth(
+                  TextFieldAuth(
+                    textEditingController: nameController,
                     lable: 'الاسم',
                     passwordVisible: false,
-                    icon: Icon(Icons.abc, color: ColorApp.blue),
+                    icon: const Icon(Icons.abc, color: ColorApp.blue),
                   ),
                   const SizedBox(height: 7),
-                  const TextFieldAuth(
+                  TextFieldAuth(
+                    textEditingController: idController,
                     lable: 'رقم الهوية',
                     passwordVisible: false,
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.assignment_ind_outlined,
                       color: ColorApp.blue,
                     ),
                   ),
                   const SizedBox(height: 7),
-                  const TextFieldAuth(
+                  TextFieldAuth(
                     // isNotValidate: _isNotValidate,
-                    // textEditingController: emailController,
+                    textEditingController: emailController,
                     lable: 'البريد الإلكتروني',
                     passwordVisible: false,
-                    icon: Icon(Icons.email_outlined, color: ColorApp.blue),
+                    icon:
+                        const Icon(Icons.email_outlined, color: ColorApp.blue),
                   ),
                   const SizedBox(height: 7),
-                  const TextFieldAuth(
+                  TextFieldAuth(
                     // isNotValidate: _isNotValidate,
-                    // textEditingController: emailController,
+                    textEditingController: passwordController,
                     lable: ' كلمة المرور',
                     passwordVisible: true,
-                    icon:
-                        Icon(Icons.lock_outline_rounded, color: ColorApp.blue),
+                    icon: const Icon(Icons.lock_outline_rounded,
+                        color: ColorApp.blue),
                   ),
                   const SizedBox(height: 7),
-                  const TextFieldAuth(
+                  TextFieldAuth(
                     // isNotValidate: _isNotValidate,
-                    // textEditingController: emailController,
+                    textEditingController: confirmPasswordController,
                     lable: 'تأكيد كلمة المرور',
                     passwordVisible: true,
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.lock_outline_rounded,
                       color: ColorApp.blue,
                     ),
@@ -111,6 +135,8 @@ class SignupState extends State<Signup> {
                   ButtonAuth(
                     label: 'إنشاء حساب جديد',
                     onPressedFun: () {
+                      signupUser();
+
                       Navigator.pushNamed(context, RouteApp.mainscreen);
                     },
                   ),

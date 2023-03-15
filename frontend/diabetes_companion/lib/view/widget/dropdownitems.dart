@@ -33,7 +33,7 @@ class CustomDropdownMenuState extends State<CustomDropdownMenu> {
           },
         ).toList(),
         style: const TextStyle(
-          fontSize: 20,
+          fontSize: 18,
           color: ColorApp.darkBlue,
         ),
         decoration: InputDecoration(

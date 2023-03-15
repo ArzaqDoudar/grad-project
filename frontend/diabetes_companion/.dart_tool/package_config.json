@@ -116,10 +116,22 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_localizations",
+      "rootUri": "file:///home/arzaqziad/.local/share/development/flutter/packages/flutter_localizations",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_otp_text_field",
       "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/flutter_otp_text_field-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_rating_bar",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/flutter_rating_bar-4.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
     },
     {
       "name": "flutter_test",
@@ -153,7 +165,7 @@
     },
     {
       "name": "intl",
-      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/intl-0.18.0",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/intl-0.17.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -296,6 +308,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "sliding_switch",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/sliding_switch-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "source_span",
       "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/source_span-1.9.1",
       "packageUri": "lib/",
@@ -330,6 +348,18 @@
       "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/string_scanner-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "syncfusion_flutter_charts",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/syncfusion_flutter_charts-20.4.53",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "syncfusion_flutter_core",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/syncfusion_flutter_core-20.4.53",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "synchronized",
@@ -380,7 +410,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-03-10T14:14:34.251050Z",
+  "generated": "2023-03-15T10:11:51.866493Z",
   "generator": "pub",
-  "generatorVersion": "2.19.2"
+  "generatorVersion": "2.19.4"
 }

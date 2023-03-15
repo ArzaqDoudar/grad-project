@@ -13,6 +13,8 @@ class EmailVerification extends StatefulWidget {
 }
 
 class EmailVerificationState extends State<EmailVerification> {
+  TextEditingController emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,12 +43,12 @@ class EmailVerificationState extends State<EmailVerification> {
                         color: ColorApp.blue),
                   ),
                   const SizedBox(height: 7),
-                  const TextFieldAuth(
+                  TextFieldAuth(
                     // isNotValidate: _isNotValidate,
-                    // textEditingController: emailController,
+                    textEditingController: emailController,
                     passwordVisible: false,
                     lable: '',
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.email_outlined,
                       color: ColorApp.blue,
                     ),

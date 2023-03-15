@@ -14,7 +14,7 @@ import 'view/screen/mainscreen.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
   RouteApp.startup: (context) => const Startup(),
-  RouteApp.test: (context) => const Test(),
+  // RouteApp.test: (context) => const Test(),
   RouteApp.onboarding: (context) => const OnBoarding(),
   RouteApp.login: (context) => const Login(),
   RouteApp.signup: (context) => const Signup(),

@@ -1,3 +1,4 @@
+import '../../../core/functions/loginfunction.dart';
 import '/core/constant/color.dart';
 import '/core/constant/imageasset.dart';
 import '/core/constant/routes.dart';
@@ -18,24 +19,25 @@ class Login extends StatefulWidget {
 class LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool _isNotValidate = false;
+  // bool _isNotValidate = false;
   // void loginUser(emailController, passwordController) async {
   //   if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
   //     var loginBody = {
   //       "email": emailController.text,
   //       "password": passwordController.text,
   //     };
-  //     var response = await http.post(
-  //       Uri.parse('uri'),
-  //       headers: {"Content-type": "application/json"},
-  //       body: jsonEncode(loginBody),
-  //     );
+  //     // var response = await http.post(
+  //     //   Uri.parse('uri'),
+  //     //   headers: {"Content-type": "application/json"},
+  //     //   body: jsonEncode(loginBody),
+  //     // );
 
-  //     print(response);
+  //     print(loginBody);
   //   } else {
-  //     setState(() {
-  //       _isNotValidate = false;
-  //     });
+  //     print('login ===> else ');
+  //     // setState(() {
+  //     //   _isNotValidate = false;
+  //     // });
   //   }
   // }
 
@@ -64,23 +66,23 @@ class LoginState extends State<Login> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          const TextFieldAuth(
+                          TextFieldAuth(
                             // isNotValidate: _isNotValidate,
-                            // textEditingController: emailController,
+                            textEditingController: emailController,
                             passwordVisible: false,
                             lable: 'البريد الإلكتروني',
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.email_outlined,
                               color: ColorApp.blue,
                             ),
                           ),
                           const SizedBox(height: 7),
-                          const TextFieldAuth(
+                          TextFieldAuth(
                             // isNotValidate: _isNotValidate,
-                            // textEditingController: passwordController,
+                            textEditingController: passwordController,
                             passwordVisible: true,
                             lable: 'كلمة المرور',
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.lock_outline_rounded,
                               color: ColorApp.blue,
                             ),
@@ -91,6 +93,7 @@ class LoginState extends State<Login> {
                           ButtonAuth(
                             label: 'تسجيل الدخول',
                             onPressedFun: () {
+                              loginUser(emailController, passwordController);
                               Navigator.pushNamed(context, RouteApp.mainscreen);
                             },
                           ),

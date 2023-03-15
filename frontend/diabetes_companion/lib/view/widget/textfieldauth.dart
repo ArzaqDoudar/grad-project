@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import '../../core/constant/color.dart';
-// import 'package:flutter_localizations/flutter_localizations.dart';
+import '../../core/functions/validinput.dart';
 
 class TextFieldAuth extends StatelessWidget {
   final String lable;
   final TextInputType? type;
   final Icon? icon;
   final bool passwordVisible;
-  // final TextEditingController textEditingController;
-  // final bool isNotValidate;
+  final TextEditingController textEditingController;
+
   const TextFieldAuth({
     super.key,
     required this.lable,
     this.type,
     this.icon,
     required this.passwordVisible,
-    // required this.textEditingController,
-    // required this.isNotValidate
+    required this.textEditingController,
   });
 
   @override
@@ -24,7 +23,9 @@ class TextFieldAuth extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: TextFormField(
-        // controller: textEditingController,
+        // validator: validInput(textEditingController.text,
+        //     type.toString()), // TODO check if this is working
+        controller: textEditingController,
         obscureText: passwordVisible,
         style: const TextStyle(
           fontSize: 20,

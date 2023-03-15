@@ -5,7 +5,7 @@ import '../../../../core/constant/routes.dart';
 import '../../../../core/constant/color.dart';
 import '../../../widget/textfieldauth.dart';
 
-TextEditingController emailController = TextEditingController();
+TextEditingController confirmPasswordController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
 bool _isNotValidate = false;
 
@@ -45,23 +45,23 @@ class NewPasswordState extends State<NewPassword> {
                         color: ColorApp.blue),
                   ),
                   const SizedBox(height: 7),
-                  const TextFieldAuth(
+                  TextFieldAuth(
                     // isNotValidate: _isNotValidate,
-                    // textEditingController: emailController,
+                    textEditingController: passwordController,
                     passwordVisible: true,
                     lable: 'كلمة المرور',
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.lock_outline_rounded,
                       color: ColorApp.blue,
                     ),
                   ),
                   const SizedBox(height: 7),
-                  const TextFieldAuth(
+                  TextFieldAuth(
                     // isNotValidate: _isNotValidate,
-                    // textEditingController: emailController,
+                    textEditingController: confirmPasswordController,
                     passwordVisible: true,
                     lable: 'تأكيد كلمة المرور',
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.lock_outline_rounded,
                       color: ColorApp.blue,
                     ),

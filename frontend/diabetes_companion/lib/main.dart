@@ -35,8 +35,8 @@ class MyApp extends StatelessWidget {
       title: 'Diabetec Companion',
       initialBinding: InitialBinding(),
       // home: const HomeScreen(),
-      // home: const Startup(),
-      home: const Test(),
+      home: const Startup(),
+      // home: const Test(),
       routes: routes,
     );
   }

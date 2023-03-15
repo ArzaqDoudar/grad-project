@@ -13,7 +13,7 @@ class TopBar extends GetView<LoacleController> {
     return AppBar(
       leading: IconButton(
         onPressed: () {
-          // TODO
+          // TODO messages
         },
         icon: const Icon(Icons.message),
       ),
@@ -23,7 +23,7 @@ class TopBar extends GetView<LoacleController> {
         IconButton(
           icon: const Icon(Icons.notifications),
           onPressed: () {
-            // TODO
+            // TODO notifications
           },
         )
       ],

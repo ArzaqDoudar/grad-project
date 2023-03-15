@@ -46,10 +46,16 @@ dependencies:
   dartz: ^0.10.1
   # calendar_date_picker2: ^0.4.2
   datetime_picker_formfield_new: ^2.1.0
-  intl: ^0.18.0
+  intl: ^0.17.0
   rotation_stage: ^0.1.0 # for test
+  syncfusion_flutter_charts: ^20.4.53
+  flutter_rating_bar: ^4.0.1
+  sliding_switch: ^1.1.0
+  # flutter_localization: ^0.1.10
   
 dev_dependencies:
+  flutter_localizations:
+        sdk: flutter
   flutter_test:
     sdk: flutter
     
@@ -77,6 +83,7 @@ flutter:
     - assets/images/
     - assets/images/advices/
     - assets/images/auth/
+    - assets/images/stores/
     - assets/lottie/
   #   - images/a_dot_ham.jpeg
 
