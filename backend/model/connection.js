@@ -8,4 +8,3 @@ connection.on('error' , ()=>{console.log('error with database')});
 
 const PATIENT = require('./patients.model')
 
-

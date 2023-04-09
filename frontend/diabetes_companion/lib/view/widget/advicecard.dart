@@ -21,7 +21,7 @@ class AdviceCard extends StatelessWidget {
       elevation: 8.0,
       borderOnForeground: true,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.symmetric(vertical: 20),
       child: Container(
         margin: const EdgeInsets.all(20.0),
         child: SizedBox(
@@ -47,7 +47,7 @@ class AdviceCard extends StatelessWidget {
                         const TextStyle(fontSize: 18, color: ColorApp.darkBlue),
                   ),
                   SizedBox(
-                    width: screenSize.width * 0.2,
+                    width: screenSize.width * 0.18,
                     child: Image.asset(image ?? ImageAsset.adviceDefultImage),
                   ),
                 ],

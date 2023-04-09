@@ -1,4 +1,4 @@
-import 'package:diabetes_companion/core/class/crud.dart';
+import '/core/class/crud.dart';
 import 'package:get/get.dart';
 
 class InitialBinding extends Bindings {

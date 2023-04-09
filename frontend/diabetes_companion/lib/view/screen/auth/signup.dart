@@ -1,5 +1,12 @@
 import 'dart:convert';
 
+import 'package:lottie/lottie.dart';
+
+import '/controller/auth/signupcontroller.dart';
+import '/core/class/statusrequest.dart';
+import 'package:get/get.dart';
+
+import '../../../core/functions/validinput.dart';
 import '/core/constant/color.dart';
 import '/core/constant/routes.dart';
 import '/view/widget/buttonauth.dart';
@@ -9,149 +16,127 @@ import '/view/widget/textfieldauth.dart';
 import '/core/constant/imageasset.dart';
 import 'package:flutter/material.dart';
 
-class Signup extends StatefulWidget {
+class Signup extends StatelessWidget {
   const Signup({super.key});
 
-  @override
-  State<Signup> createState() => SignupState();
-}
-
-class SignupState extends State<Signup> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController idController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // nameController.text = 'ARZAQZIADDOUDAR';
-    // idController.text = '123456';
-  }
-
   // bool _isNotValidate = false;
-  void signupUser() async {
-    if (idController.text.isNotEmpty &&
-        nameController.text.isNotEmpty &&
-        emailController.text.isNotEmpty &&
-        passwordController.text.isNotEmpty &&
-        confirmPasswordController.text.isNotEmpty) {
-      // nameController.text = 'ARZAQZIADDOUDAR';
-      var loginBody = {
-        "email": emailController.text,
-        "password": passwordController.text,
-        "id": idController.text,
-      };
-      print(loginBody);
-      var response = await http.post(
-        Uri.parse('http://localhost:3000/patients'),
-        headers: {"Content-type": "application/json"},
-        body: jsonEncode(loginBody),
-      );
-      print(response);
-      // print(jsonEncode(loginBody));
-    } else {
-      print('loginBody');
-
-      // setState(() {
-      //   _isNotValidate = false;
-      // });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SignUpControllerImp());
     return Scaffold(
-      body: Center(
-        child: Stack(
-          children: <Widget>[
-            Container(
-              alignment: Alignment.center,
-              child: const Image(
-                image: AssetImage(ImageAsset.signupImage),
-                fit: BoxFit.cover,
-                height: double.infinity,
-                width: double.infinity,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const SizedBox(height: 7),
-                  const Text(
-                    'حساب جديد ',
-                    style: TextStyle(fontSize: 40, color: ColorApp.blue),
-                  ),
-                  TextFieldAuth(
-                    textEditingController: nameController,
-                    lable: 'الاسم',
-                    passwordVisible: false,
-                    icon: const Icon(Icons.abc, color: ColorApp.blue),
-                  ),
-                  const SizedBox(height: 7),
-                  TextFieldAuth(
-                    textEditingController: idController,
-                    lable: 'رقم الهوية',
-                    passwordVisible: false,
-                    icon: const Icon(
-                      Icons.assignment_ind_outlined,
-                      color: ColorApp.blue,
+      body: GetBuilder<SignUpControllerImp>(
+        builder: (controller) => controller.statusRequest ==
+                StatusRequest.loading
+            ? Center(child: Lottie.asset(ImageAsset.loadingLottie))
+            // const Center(
+            //     child: Text('Loading ...'),
+            //   )
+            : Center(
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      child: const Image(
+                        image: AssetImage(ImageAsset.signupImage),
+                        fit: BoxFit.cover,
+                        height: double.infinity,
+                        width: double.infinity,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 7),
-                  TextFieldAuth(
-                    // isNotValidate: _isNotValidate,
-                    textEditingController: emailController,
-                    lable: 'البريد الإلكتروني',
-                    passwordVisible: false,
-                    icon:
-                        const Icon(Icons.email_outlined, color: ColorApp.blue),
-                  ),
-                  const SizedBox(height: 7),
-                  TextFieldAuth(
-                    // isNotValidate: _isNotValidate,
-                    textEditingController: passwordController,
-                    lable: ' كلمة المرور',
-                    passwordVisible: true,
-                    icon: const Icon(Icons.lock_outline_rounded,
-                        color: ColorApp.blue),
-                  ),
-                  const SizedBox(height: 7),
-                  TextFieldAuth(
-                    // isNotValidate: _isNotValidate,
-                    textEditingController: confirmPasswordController,
-                    lable: 'تأكيد كلمة المرور',
-                    passwordVisible: true,
-                    icon: const Icon(
-                      Icons.lock_outline_rounded,
-                      color: ColorApp.blue,
+                    Form(
+                      key: controller.formstatesignup,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Text(
+                              'حساب جديد ',
+                              style:
+                                  TextStyle(fontSize: 32, color: ColorApp.blue),
+                            ),
+                            const SizedBox(height: 25),
+                            TextFieldAuth(
+                              valid: (val) {
+                                return validInput(val!, 'name', 0, 20);
+                              },
+                              textEditingController: controller.name,
+                              lable: 'الاسم',
+                              passwordVisible: false,
+                              icon: const Icon(Icons.abc, color: ColorApp.blue),
+                            ),
+                            const SizedBox(height: 15),
+                            TextFieldAuth(
+                              valid: (val) {
+                                return validInput(val!, 'email', 0, 50);
+                              },
+                              textEditingController: controller.email,
+                              lable: 'البريد الإلكتروني',
+                              passwordVisible: false,
+                              icon: const Icon(Icons.email_outlined,
+                                  color: ColorApp.blue),
+                            ),
+                            const SizedBox(height: 15),
+                            TextFieldAuth(
+                              valid: (val) {
+                                return validInput(val!, 'password', 0, 50);
+                              }, //TODO edit this
+                              textEditingController: controller.password,
+                              lable: 'كلمة المرور',
+                              passwordVisible: true,
+                              icon: const Icon(Icons.lock_outline_rounded,
+                                  color: ColorApp.blue),
+                            ),
+                            const SizedBox(height: 15),
+                            TextFieldAuth(
+                              valid: (val) {
+                                return validInput(val!, 'password', 0, 50);
+                              },
+                              textEditingController: controller.confirmpassword,
+                              lable: 'تأكيد كلمة المرور',
+                              passwordVisible: true,
+                              icon: const Icon(
+                                Icons.lock_outline_rounded,
+                                color: ColorApp.blue,
+                              ),
+                            ),
+                            const SizedBox(height: 15),
+                            ButtonAuth(
+                              label: 'إنشاء حساب جديد',
+                              onPressedFun: () {
+                                // signupUser();
+                                controller.signup();
+                                // Navigator.pushNamed(context, RouteApp.verifypatient);
+                              },
+                            ),
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).viewInsets.bottom == 0
+                                      ? 50
+                                      : 0,
+                              child: CustomTextButton(
+                                label: 'لدي حساب بالفعل؟',
+                                onPressedFun: () {
+                                  controller.goToLogin();
+                                  // Navigator.pushNamed(context, RouteApp.login);
+                                },
+                              ),
+                            ),
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).viewInsets.bottom == 0
+                                      ? 70
+                                      : 0,
+                            ),
+                            // )
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 7),
-                  ButtonAuth(
-                    label: 'إنشاء حساب جديد',
-                    onPressedFun: () {
-                      signupUser();
-
-                      Navigator.pushNamed(context, RouteApp.mainscreen);
-                    },
-                  ),
-                  CustomTextButton(
-                    label: 'لدي حساب بالفعل؟',
-                    onPressedFun: () {
-                      Navigator.pushNamed(context, RouteApp.login);
-                    },
-                  ),
-                  const SizedBox(height: 30),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
       ),
     );
   }

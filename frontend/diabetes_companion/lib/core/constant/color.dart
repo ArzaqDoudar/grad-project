@@ -9,4 +9,5 @@ class ColorApp {
   static const Color pink = Color(0xFFFF96AD);
   static const Color red = Color(0xFFC01E1E);
   static const Color white = Color(0xFFffffff);
+  static const Color lightblue = Color(0xff1b89ca);
 }

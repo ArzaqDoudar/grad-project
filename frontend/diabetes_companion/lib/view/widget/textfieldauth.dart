@@ -8,6 +8,7 @@ class TextFieldAuth extends StatelessWidget {
   final Icon? icon;
   final bool passwordVisible;
   final TextEditingController textEditingController;
+  final String? Function(String?) valid;
 
   const TextFieldAuth({
     super.key,
@@ -16,6 +17,7 @@ class TextFieldAuth extends StatelessWidget {
     this.icon,
     required this.passwordVisible,
     required this.textEditingController,
+    required this.valid,
   });
 
   @override
@@ -23,8 +25,7 @@ class TextFieldAuth extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: TextFormField(
-        // validator: validInput(textEditingController.text,
-        //     type.toString()), // TODO check if this is working
+        validator: valid,
         controller: textEditingController,
         obscureText: passwordVisible,
         style: const TextStyle(
@@ -41,13 +42,26 @@ class TextFieldAuth extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.0),
             borderSide: const BorderSide(
               color: ColorApp.blue,
-              width: 2.0,
+              width: 2.5,
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0),
             borderSide: const BorderSide(
               color: ColorApp.blue,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0),
+            borderSide: const BorderSide(
+              color: ColorApp.red,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0),
+            borderSide: const BorderSide(
+              color: ColorApp.red,
+              width: 2.5,
             ),
           ),
           label: Padding(

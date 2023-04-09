@@ -1,3 +1,6 @@
+import 'package:get/get.dart';
+
+import '../../../core/constant/routes.dart';
 import '/core/constant/color.dart';
 
 import '/core/constant/imageasset.dart';
@@ -32,8 +35,8 @@ class Startup extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          const Padding(
+                        children: const <Widget>[
+                          Padding(
                             padding: EdgeInsets.only(bottom: 20),
                             child: Align(
                               alignment: Alignment.bottomCenter,
@@ -55,42 +58,44 @@ class Startup extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        const OnBoarding(),
-                                  ),
-                                );
-                              },
-                              child: const Icon(
-                                Icons.arrow_forward_rounded,
-                                size: 30,
-                              ),
-                            ),
-                            // IconButton(
-                            //   iconSize: 75,
-                            //   icon: const Icon(
-                            //       Icons.arrow_circle_right_rounded),
-                            //   color: const Color.fromRGBO(0, 90, 141, 1),
-                            //   onPressed: () {
-                            //     print('startup page');
-                            //     // Navigator.push(
-                            //     //   context,
-                            //     //   MaterialPageRoute(
-                            //     //     builder: (BuildContext context) =>
-                            //     //         const MainScreen(),
-                            //     //   ),
-                            //     // );
-                            //   },
-                            // ),
-                          ),
-                          const SizedBox(height: 60),
+                          // SizedBox(
+                          //   height: 50,
+                          //   width: 100,
+                          //   child: ElevatedButton(
+                          //     style: ButtonStyle(
+                          //         backgroundColor: MaterialStateProperty.all(
+                          //             ColorApp.lightblue)),
+                          //     onPressed: () {
+                          //       Get.offNamed(RouteApp.login);
+                          //       // Navigator.push(
+                          //       //   context,
+                          //       //   MaterialPageRoute(
+                          //       //     builder: (BuildContext context) =>
+                          //       //         const OnBoarding(),
+                          //       //   ),
+                          //       // );
+                          //     },
+                          //     child: Row(
+                          //       mainAxisSize: MainAxisSize.min,
+                          //       children: const [
+                          //         Text(
+                          //           'ابدأ',
+                          //           style: TextStyle(
+                          //             fontSize: 24,
+                          //           ),
+                          //         ),
+                          //         SizedBox(
+                          //           width: 10,
+                          //         ),
+                          //         Icon(
+                          //           Icons.arrow_forward,
+                          //           size: 24.0,
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
+                          SizedBox(height: 60),
                         ]),
                   ),
                 ),

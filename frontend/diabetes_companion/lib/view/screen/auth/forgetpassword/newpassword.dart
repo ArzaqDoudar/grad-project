@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../../controller/auth/forgetpasswordcontroller.dart';
+import '../../../../core/functions/validinput.dart';
 import '/view/widget/buttonauth.dart';
 import '/core/constant/imageasset.dart';
 import '../../../../core/constant/routes.dart';
 import '../../../../core/constant/color.dart';
 import '../../../widget/textfieldauth.dart';
 
-TextEditingController confirmPasswordController = TextEditingController();
-TextEditingController passwordController = TextEditingController();
-bool _isNotValidate = false;
-
-class NewPassword extends StatefulWidget {
+class NewPassword extends StatelessWidget {
   const NewPassword({super.key});
 
   @override
-  State<NewPassword> createState() => NewPasswordState();
-}
-
-class NewPasswordState extends State<NewPassword> {
-  @override
   Widget build(BuildContext context) {
+    ForgetPasswordControllerImp controller =
+        Get.put(ForgetPasswordControllerImp());
     return Scaffold(
       body: Center(
         child: Stack(
@@ -30,6 +26,25 @@ class NewPasswordState extends State<NewPassword> {
                 fit: BoxFit.cover,
                 height: double.infinity,
                 width: double.infinity,
+              ),
+            ),
+            Positioned(
+              top: 0.0,
+              left: 0.0,
+              right: 0.0,
+              child: AppBar(
+                // You can add title here
+                leading: IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    color: ColorApp.blue,
+                    size: 28,
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                backgroundColor:
+                    Colors.transparent, //You can make this transparent
+                elevation: 0.0, //No shadow
               ),
             ),
             Padding(
@@ -46,8 +61,10 @@ class NewPasswordState extends State<NewPassword> {
                   ),
                   const SizedBox(height: 7),
                   TextFieldAuth(
-                    // isNotValidate: _isNotValidate,
-                    textEditingController: passwordController,
+                    valid: (val) {
+                      return validInput(val!, 'password', 0, 50);
+                    },
+                    textEditingController: controller.newpassword,
                     passwordVisible: true,
                     lable: 'كلمة المرور',
                     icon: const Icon(
@@ -57,8 +74,10 @@ class NewPasswordState extends State<NewPassword> {
                   ),
                   const SizedBox(height: 7),
                   TextFieldAuth(
-                    // isNotValidate: _isNotValidate,
-                    textEditingController: confirmPasswordController,
+                    valid: (val) {
+                      return validInput(val!, 'password', 0, 50);
+                    },
+                    textEditingController: controller.confirmpassword,
                     passwordVisible: true,
                     lable: 'تأكيد كلمة المرور',
                     icon: const Icon(
@@ -70,7 +89,8 @@ class NewPasswordState extends State<NewPassword> {
                   ButtonAuth(
                     label: 'تغيير كلمة المرور ',
                     onPressedFun: () {
-                      Navigator.pushNamed(context, RouteApp.login);
+                      controller.changePassword();
+                      // Navigator.pushNamed(context, RouteApp.login);
                     },
                   )
                 ],

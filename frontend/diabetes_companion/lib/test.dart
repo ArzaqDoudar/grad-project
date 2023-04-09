@@ -1,7 +1,345 @@
+import 'package:dropdown_textfield/dropdown_textfield.dart';
+import 'package:flutter/material.dart';
+
+class TestPage extends StatefulWidget {
+  const TestPage({Key? key}) : super(key: key);
+
+  @override
+  State<TestPage> createState() => _TestPageState();
+}
+
+class _TestPageState extends State<TestPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  FocusNode searchFocusNode = FocusNode();
+  FocusNode textFieldFocusNode = FocusNode();
+  late SingleValueDropDownController _cnt;
+  late MultiValueDropDownController _cntMulti;
+
+  @override
+  void initState() {
+    _cnt = SingleValueDropDownController();
+    _cntMulti = MultiValueDropDownController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _cnt.dispose();
+    _cntMulti.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                const Text(
+                  "Single selection dropdown with search option",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                DropDownTextField(
+                  // initialValue: "name4",
+                  controller: _cnt,
+                  clearOption: true,
+                  // enableSearch: true,
+                  // dropdownColor: Colors.green,
+                  searchDecoration: const InputDecoration(
+                      hintText: "enter your custom hint text here"),
+                  validator: (value) {
+                    if (value == null) {
+                      return "Required field";
+                    } else {
+                      return null;
+                    }
+                  },
+                  dropDownItemCount: 6,
+
+                  dropDownList: const [
+                    DropDownValueModel(name: 'name1', value: "value1"),
+                    DropDownValueModel(
+                        name: 'name2',
+                        value: "value2",
+                        toolTipMsg:
+                            "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                    DropDownValueModel(name: 'name3', value: "value3"),
+                    DropDownValueModel(
+                        name: 'name4',
+                        value: "value4",
+                        toolTipMsg:
+                            "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                    DropDownValueModel(name: 'name5', value: "value5"),
+                    DropDownValueModel(name: 'name6', value: "value6"),
+                    DropDownValueModel(name: 'name7', value: "value7"),
+                    DropDownValueModel(name: 'name8', value: "value8"),
+                  ],
+                  onChanged: (val) {},
+                ),
+                const SizedBox(
+                  height: 500,
+                ),
+                const Text(
+                  "Single selection dropdown with search option",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                DropDownTextField(
+                  clearOption: false,
+                  textFieldFocusNode: textFieldFocusNode,
+                  searchFocusNode: searchFocusNode,
+                  // searchAutofocus: true,
+                  dropDownItemCount: 8,
+                  searchShowCursor: false,
+                  enableSearch: true,
+                  searchKeyboardType: TextInputType.number,
+                  dropDownList: const [
+                    DropDownValueModel(name: 'name1', value: "value1"),
+                    DropDownValueModel(
+                        name: 'name2',
+                        value: "value2",
+                        toolTipMsg:
+                            "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                    DropDownValueModel(name: 'name3', value: "value3"),
+                    DropDownValueModel(
+                        name: 'name4',
+                        value: "value4",
+                        toolTipMsg:
+                            "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                    DropDownValueModel(name: 'name5', value: "value5"),
+                    DropDownValueModel(name: 'name6', value: "value6"),
+                    DropDownValueModel(name: 'name7', value: "value7"),
+                    DropDownValueModel(name: 'name8', value: "value8"),
+                  ],
+                  onChanged: (val) {},
+                ),
+                const SizedBox(
+                  height: 500,
+                ),
+                const Text(
+                  "multi selection dropdown",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                DropDownTextField.multiSelection(
+                  // controller: _cntMulti,
+                  displayCompleteItem: true,
+                  initialValue: const ["name1", "name2", "name8", "name3"],
+                  dropDownList: const [
+                    DropDownValueModel(name: 'name1', value: "value1"),
+                    DropDownValueModel(
+                        name: 'name2',
+                        value: "value2",
+                        toolTipMsg:
+                            "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                    DropDownValueModel(name: 'name3', value: "value3"),
+                    DropDownValueModel(
+                        name: 'name4',
+                        value: "value4",
+                        toolTipMsg:
+                            "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                    DropDownValueModel(name: 'name5', value: "value5"),
+                    DropDownValueModel(name: 'name6', value: "value6"),
+                    DropDownValueModel(name: 'name7', value: "value7"),
+                    DropDownValueModel(name: 'name8', value: "value8"),
+                  ],
+                  onChanged: (val) {
+                    setState(() {});
+                  },
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                const Text(
+                  "Single selection dropdown",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                DropDownTextField(
+                  // initialValue: "name4",
+                  listSpace: 20,
+                  listPadding: ListPadding(top: 20),
+                  enableSearch: true,
+                  validator: (value) {
+                    if (value == null) {
+                      return "Required field";
+                    } else {
+                      return null;
+                    }
+                  },
+                  dropDownList: const [
+                    DropDownValueModel(name: 'name1', value: "value1"),
+                    DropDownValueModel(name: 'name2', value: "value2"),
+                    DropDownValueModel(name: 'name3', value: "value3"),
+                    DropDownValueModel(name: 'name4', value: "value4"),
+                    DropDownValueModel(name: 'name5', value: "value5"),
+                    DropDownValueModel(name: 'name6', value: "value6"),
+                    DropDownValueModel(name: 'name7', value: "value7"),
+                    DropDownValueModel(name: 'name8', value: "value8"),
+                  ],
+                  listTextStyle: const TextStyle(color: Colors.red),
+                  dropDownItemCount: 8,
+
+                  onChanged: (val) {},
+                ),
+                const SizedBox(
+                  height: 50,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          setState(() {});
+        },
+        label: const Text("Submit"),
+      ),
+    );
+  }
+}
+
+class TestPage2 extends StatefulWidget {
+  const TestPage2({Key? key}) : super(key: key);
+
+  @override
+  State<TestPage2> createState() => _TestPage2State();
+}
+
+class _TestPage2State extends State<TestPage2> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  FocusNode searchFocusNode = FocusNode();
+  FocusNode textFieldFocusNode = FocusNode();
+  late SingleValueDropDownController _cnt;
+  late MultiValueDropDownController _cntMulti;
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    _cnt = SingleValueDropDownController();
+    _cntMulti = MultiValueDropDownController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _cnt.dispose();
+    _cntMulti.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                const Text(
+                  "Single selection dropdown with search option",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Form(
+                  key: formKey,
+                  child: DropDownTextField(
+                    // initialValue: "name4",
+                    // readOnly: false,
+                    controller: _cnt,
+                    clearOption: true,
+
+                    keyboardType: TextInputType.number,
+                    autovalidateMode: AutovalidateMode.always,
+                    clearIconProperty: IconProperty(color: Colors.green),
+                    searchDecoration: const InputDecoration(
+                        hintText: "enter your custom hint text here"),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Required field";
+                      } else {
+                        return null;
+                      }
+                    },
+                    dropDownItemCount: 6,
+
+                    dropDownList: const [
+                      DropDownValueModel(name: 'name1', value: "value1"),
+                      DropDownValueModel(
+                          name: 'name2',
+                          value: "value2",
+                          toolTipMsg:
+                              "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                      DropDownValueModel(name: 'name3', value: "value3"),
+                      DropDownValueModel(
+                          name: 'name4',
+                          value: "value4",
+                          toolTipMsg:
+                              "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                      DropDownValueModel(name: 'name5', value: "value5"),
+                      DropDownValueModel(name: 'name6', value: "value6"),
+                      DropDownValueModel(name: 'name7', value: "value7"),
+                      DropDownValueModel(name: 'name8', value: "value8"),
+                    ],
+                    onChanged: (val) {},
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          formKey.currentState!.validate();
+        },
+        label: const Text("Submit"),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+// import 'dart:convert';
+// // import '/view/widget/testwidget.dart';
+
+// // import '/view/widget/advicecard.dart';
+// import 'package:get/get.dart';
+// import 'package:http/http.dart' as http;
 // import '/core/functions/checkinternet.dart';
 // import 'package:flutter/material.dart';
-
-// import 'view/testview.dart';
 
 // class Test extends StatefulWidget {
 //   const Test({super.key});
@@ -12,22 +350,116 @@
 
 // class _TestState extends State<Test> {
 //   var res;
-//   initData() async {
-//     res = await checkInternet();
-//     print(res);
+
+//   getAdvices() async {
+//     try {
+//       var result = await http
+//           .get(Uri.parse('https://da53-193-223-252-161.ngrok.io/advices'));
+//       if (result.statusCode == 200) {
+//         var jsonObj = jsonDecode(result.body);
+//         print("result from Database ==>\n");
+//         print(jsonObj['result']);
+//         return jsonObj['result'];
+//       } else {
+//         print("NO DATE from Database ==>\n");
+//         return Null;
+//       }
+//     } catch (e) {
+//       print('CATCH');
+//       print(e);
+//       print('CATCH');
+//       return "ERROR";
+//       // printError();
+//     }
 //   }
+
+//   // initData() async {
+//   //   res = await checkInternet();
+//   //   print(res);
+//   // }
 
 //   @override
 //   void initState() {
-//     initData();
+//     // initData();
 //     super.initState();
 //   }
 
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       appBar: AppBar(title: const Text('Test Page')),
-//       body: const TestView(),
+//       appBar: AppBar(title: const Text('للتجربة ')),
+//       body: FutureBuilder<String>(
+//         future: getAdvices(), // a previously-obtained Future<String> or null
+//         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+//           List<Widget> children;
+//           if (snapshot.data != null) {
+//             children = <Widget>[
+//               const Icon(
+//                 Icons.check_circle_outline,
+//                 color: Colors.green,
+//                 size: 60,
+//               ),
+//               Padding(
+//                 padding: const EdgeInsets.only(top: 16),
+//                 child: Text('Result: ${snapshot.data}'),
+//               ),
+//             ];
+//           } else if (snapshot.hasError) {
+//             children = <Widget>[
+//               const Icon(
+//                 Icons.error_outline,
+//                 color: Colors.red,
+//                 size: 60,
+//               ),
+//               Padding(
+//                 padding: const EdgeInsets.only(top: 16),
+//                 child: Text('Error: ${snapshot.error}'),
+//               ),
+//             ];
+//           } else {
+//             children = const <Widget>[
+//               SizedBox(
+//                 width: 60,
+//                 height: 60,
+//                 child: CircularProgressIndicator(),
+//               ),
+//               Padding(
+//                 padding: EdgeInsets.only(top: 16),
+//                 child: Text('Awaiting result...'),
+//               ),
+//             ];
+//           }
+//           return Center(
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: children,
+//             ),
+//           );
+//         },
+//       ),
+
+//       // FutureBuilder(
+//       //   initialData: const [],
+//       //   future: getAdvices(),
+//       //   builder: (context, snapshot) {
+//       //     if (snapshot.data != null) {
+//       //       return ListView.builder(
+//       //           itemCount: snapshot.data!.length,
+//       //           itemBuilder: (context, index) {
+//       //             return Card(
+//       //               elevation: 4,
+//       //               child: ListTile(
+//       //                 title: Text(snapshot.data![index]['text']),
+//       //                 subtitle: Text(snapshot.data![index]['description']),
+//       //               ),
+//       //             );
+//       //           });
+//       //     } else {
+//       //       return const CircularProgressIndicator();
+//       //     }
+//       //   },
+//       // ),
+//       // AdviceCard(text: "text"),
 //     );
 //   }
 // }

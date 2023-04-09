@@ -41,17 +41,29 @@ dependencies:
   lottie: ^2.2.0
   circles_background: ^0.0.2
   flutter_otp_text_field: ^1.1.1
-  http: ^0.13.5
   dropdown_button2: ^2.0.0
   dartz: ^0.10.1
   # calendar_date_picker2: ^0.4.2
   datetime_picker_formfield_new: ^2.1.0
   intl: ^0.17.0
-  rotation_stage: ^0.1.0 # for test
   syncfusion_flutter_charts: ^20.4.53
   flutter_rating_bar: ^4.0.1
   sliding_switch: ^1.1.0
   # flutter_localization: ^0.1.10
+  # for backend
+  http: ^0.13.5
+  dropdown_textfield: ^1.0.8
+  textfield_search: ^0.10.0
+  image_picker: ^0.8.7
+  flutter_barcode_scanner: ^2.0.0
+  syncfusion_flutter_calendar: ^20.4.54
+  flutter_chat_ui: ^1.6.6
+  mime: ^1.0.4
+  file_picker: ^5.2.6
+  open_filex: ^4.3.2
+  uuid: ^3.0.7
+  path_provider: ^2.0.14
+  fl_chart: ^0.61.0
   
 dev_dependencies:
   flutter_localizations:
@@ -84,6 +96,7 @@ flutter:
     - assets/images/advices/
     - assets/images/auth/
     - assets/images/stores/
+    - assets/images/onboarding/
     - assets/lottie/
   #   - images/a_dot_ham.jpeg
 

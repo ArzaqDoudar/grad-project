@@ -29,6 +29,25 @@ class VerificationCodeState extends State<VerificationCode> {
                 width: double.infinity,
               ),
             ),
+            Positioned(
+              top: 0.0,
+              left: 5.0,
+              right: 0.0,
+              child: AppBar(
+                // You can add title here
+                leading: IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    color: ColorApp.blue,
+                    size: 28,
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                backgroundColor:
+                    Colors.transparent, //You can make this transparent
+                elevation: 0.0, //No shadow
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Column(

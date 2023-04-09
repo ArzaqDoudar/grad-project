@@ -1,48 +1,24 @@
-import '../../../core/functions/loginfunction.dart';
+import 'package:diabetes_companion/core/class/statusrequest.dart';
+
+import '../../../core/functions/alertexitapp.dart';
+import '/core/functions/validinput.dart';
+
+import '../../../controller/auth/logincontroller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import '/core/constant/color.dart';
 import '/core/constant/imageasset.dart';
-import '/core/constant/routes.dart';
 import '/view/widget/buttonauth.dart';
 import '/view/widget/customtextbutton.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import '../../widget/textfieldauth.dart';
 
-class Login extends StatefulWidget {
+class Login extends StatelessWidget {
   const Login({super.key});
 
   @override
-  State<Login> createState() => LoginState();
-}
-
-class LoginState extends State<Login> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  // bool _isNotValidate = false;
-  // void loginUser(emailController, passwordController) async {
-  //   if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-  //     var loginBody = {
-  //       "email": emailController.text,
-  //       "password": passwordController.text,
-  //     };
-  //     // var response = await http.post(
-  //     //   Uri.parse('uri'),
-  //     //   headers: {"Content-type": "application/json"},
-  //     //   body: jsonEncode(loginBody),
-  //     // );
-
-  //     print(loginBody);
-  //   } else {
-  //     print('login ===> else ');
-  //     // setState(() {
-  //     //   _isNotValidate = false;
-  //     // });
-  //   }
-  // }
-
-  @override
   Widget build(BuildContext context) {
+    LoginControllerImp controller = Get.put(LoginControllerImp());
     return Scaffold(
       body: Center(
         child: Stack(
@@ -56,75 +32,82 @@ class LoginState extends State<Login> {
                 width: double.infinity,
               ),
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          TextFieldAuth(
-                            // isNotValidate: _isNotValidate,
-                            textEditingController: emailController,
-                            passwordVisible: false,
-                            lable: 'البريد الإلكتروني',
-                            icon: const Icon(
-                              Icons.email_outlined,
-                              color: ColorApp.blue,
-                            ),
-                          ),
-                          const SizedBox(height: 7),
-                          TextFieldAuth(
-                            // isNotValidate: _isNotValidate,
-                            textEditingController: passwordController,
-                            passwordVisible: true,
-                            lable: 'كلمة المرور',
-                            icon: const Icon(
-                              Icons.lock_outline_rounded,
-                              color: ColorApp.blue,
-                            ),
-                          ),
-                          const SizedBox(height: 7),
-
-                          //login button
-                          ButtonAuth(
-                            label: 'تسجيل الدخول',
+            // GetBuilder<LoginControllerImp>(
+            //   builder: (controller) => controller.statusRequest ==
+            //           StatusRequest.loading
+            //       ? const Center(
+            //           child: Text('Loading ...'),
+            //         )
+            //       :
+            Form(
+              key: controller.formstatelogin,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      TextFieldAuth(
+                        valid: (val) {
+                          return validInput(val!, 'email', 0, 50);
+                        },
+                        textEditingController: controller.email,
+                        passwordVisible: false,
+                        lable: 'البريد الإلكتروني',
+                        icon: const Icon(
+                          Icons.email_outlined,
+                          color: ColorApp.blue,
+                        ),
+                      ),
+                      const SizedBox(height: 7),
+                      TextFieldAuth(
+                        valid: (val) {
+                          return validInput(val!, 'password', 0, 50);
+                        }, // TODO edit this
+                        textEditingController: controller.password,
+                        passwordVisible: true,
+                        lable: 'كلمة المرور',
+                        icon: const Icon(
+                          Icons.lock_outline_rounded,
+                          color: ColorApp.blue,
+                        ),
+                      ),
+                      const SizedBox(height: 7),
+                      ButtonAuth(
+                        label: 'تسجيل الدخول',
+                        onPressedFun: () {
+                          controller.login();
+                        },
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomTextButton(
+                            label: 'هل نسيت كلمة المرور؟',
                             onPressedFun: () {
-                              loginUser(emailController, passwordController);
-                              Navigator.pushNamed(context, RouteApp.mainscreen);
+                              controller.goToForgetPassword();
                             },
                           ),
-
-                          //not member? sign up or forget my pass?
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CustomTextButton(
-                                label: 'هل نسيت كلمة المرور؟',
-                                onPressedFun: () {
-                                  Navigator.pushNamed(
-                                      context, RouteApp.forgetpasswordemail);
-                                },
-                              ),
-                              CustomTextButton(
-                                label: 'حساب جديد؟',
-                                onPressedFun: () {
-                                  Navigator.pushNamed(context, RouteApp.signup);
-                                },
-                              ),
-                            ],
+                          CustomTextButton(
+                            label: 'ليس لديك حساب؟',
+                            onPressedFun: () {
+                              controller.goToSignUp();
+                            },
                           ),
-                          const SizedBox(height: 50),
                         ],
                       ),
-                    ),
+                      SizedBox(
+                        height: MediaQuery.of(context).viewInsets.bottom == 0
+                            ? 50
+                            : 0,
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
+            // ),
           ],
         ),
       ),

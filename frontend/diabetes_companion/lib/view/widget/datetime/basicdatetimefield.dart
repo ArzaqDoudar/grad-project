@@ -1,5 +1,7 @@
 import 'package:datetime_picker_formfield_new/datetime_picker_formfield.dart';
-import 'package:diabetes_companion/core/constant/color.dart';
+import 'package:get/get.dart';
+import '../../../core/localization/changelocal.dart';
+import '/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -12,8 +14,13 @@ class BasicDateTimeField extends StatelessWidget {
   BasicDateTimeField({super.key, required this.textEditingController});
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      DateTimeField(
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(80),
+        //set border radius more than 50% of height and width to make circle
+      ),
+      elevation: 4,
+      child: DateTimeField(
         controller: textEditingController,
         decoration: InputDecoration(
           // errorText: isNotValidate ? 'enter data' : null,
@@ -35,7 +42,7 @@ class BasicDateTimeField extends StatelessWidget {
           label: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              "تاريخ و وقت ",
+              "اختر التاريخ والوقت",
               style: TextStyle(
                 fontSize: 20,
                 color: ColorApp.blue,
@@ -55,6 +62,9 @@ class BasicDateTimeField extends StatelessWidget {
         onShowPicker: (context, currentValue) async {
           return await showDatePicker(
             context: context,
+            confirmText: 'التالي',
+            cancelText: 'الغاء',
+            helpText: "",
             firstDate: DateTime(1900),
             initialDate: currentValue ?? DateTime.now(),
             lastDate: DateTime(2100),
@@ -79,6 +89,9 @@ class BasicDateTimeField extends StatelessWidget {
             if (date != null) {
               final time = await showTimePicker(
                 context: context,
+                confirmText: 'تم',
+                cancelText: 'الغاء',
+                helpText: "",
                 initialTime:
                     TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
                 builder: (context, child) {
@@ -106,6 +119,6 @@ class BasicDateTimeField extends StatelessWidget {
           });
         },
       ),
-    ]);
+    );
   }
 }
