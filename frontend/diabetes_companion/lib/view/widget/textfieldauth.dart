@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import '../../core/constant/color.dart';
-import '../../core/functions/validinput.dart';
+// import '../../core/functions/validinput.dart';
 
 class TextFieldAuth extends StatelessWidget {
   final String lable;
   final TextInputType? type;
   final Icon? icon;
-  final bool passwordVisible;
+  final bool? passwordVisible;
   final TextEditingController textEditingController;
-  final String? Function(String?) valid;
-
+  final String? Function(String?)? valid;
+  final text = "";
+  final String? value;
   const TextFieldAuth({
     super.key,
     required this.lable,
     this.type,
     this.icon,
-    required this.passwordVisible,
+    this.passwordVisible,
     required this.textEditingController,
-    required this.valid,
+    this.valid,
+    this.value,
   });
 
   @override
@@ -25,9 +27,11 @@ class TextFieldAuth extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: TextFormField(
-        validator: valid,
+        // validator: valid,
+        initialValue: value,
         controller: textEditingController,
-        obscureText: passwordVisible,
+        // onChanged: (value) => textEditingController.text = value,
+        obscureText: passwordVisible ?? false,
         style: const TextStyle(
           fontSize: 20,
           color: ColorApp.darkBlue,

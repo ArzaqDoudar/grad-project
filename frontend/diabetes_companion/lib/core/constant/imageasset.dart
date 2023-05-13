@@ -25,10 +25,15 @@ class ImageAsset {
   // Advices images
   static const String adviceDefultImage =
       '$rootImagesAdvice/adviceDefultImage.png';
+  // 'https://firebasestorage.googleapis.com/v0/b/diabetes-companion-944a8.appspot.com/o/DefaultImages%2FadviceDefultImage.png?alt=media&token=2f7d2edb-9991-4153-8b49-0d4059e8b0da';
+
   static const String adviceImageOne = '$rootImagesAdvice/adviceImageOne.png';
   //profile images
   static const String avatarPatient = '$rootImages/avatar.png';
-  static const String avatarDoctor = '$rootImages/nurse.png';
+  // 'https://firebasestorage.googleapis.com/v0/b/diabetes-companion-944a8.appspot.com/o/DefaultImages%2Favatar.png?alt=media&token=f10e91b6-1fdd-4cc8-91c2-7063bd2f240d';
+  static const String avatarDoctor = '$rootImages/avatar_doctor.png';
+  static const String avatarDoctor2 = '$rootImages/avatardoctor2.png';
+  // 'https://firebasestorage.googleapis.com/v0/b/diabetes-companion-944a8.appspot.com/o/DefaultImages%2Favatar_doctor.png?alt=media&token=3e656503-e000-49e5-9eaa-f055d7ad416b';
 
   //add logs
   static const String glucose = '$rootImages/bloodGlucose.png';

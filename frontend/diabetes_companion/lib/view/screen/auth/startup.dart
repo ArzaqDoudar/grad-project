@@ -1,10 +1,7 @@
+import 'package:diabetes_companion/core/constant/routes.dart';
 import 'package:get/get.dart';
 
-import '../../../core/constant/routes.dart';
-import '/core/constant/color.dart';
-
 import '/core/constant/imageasset.dart';
-import '/view/screen/auth/onboarding.dart';
 import 'package:flutter/material.dart';
 
 class Startup extends StatelessWidget {
@@ -35,8 +32,8 @@ class Startup extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: const <Widget>[
-                          Padding(
+                        children: <Widget>[
+                          const Padding(
                             padding: EdgeInsets.only(bottom: 20),
                             child: Align(
                               alignment: Alignment.bottomCenter,
@@ -58,6 +55,11 @@ class Startup extends StatelessWidget {
                               ),
                             ),
                           ),
+                          ElevatedButton(
+                              onPressed: () {
+                                Get.toNamed(RouteApp.login);
+                              },
+                              child: const Text('To Login')),
                           // SizedBox(
                           //   height: 50,
                           //   width: 100,
@@ -95,7 +97,7 @@ class Startup extends StatelessWidget {
                           //     ),
                           //   ),
                           // ),
-                          SizedBox(height: 60),
+                          const SizedBox(height: 60),
                         ]),
                   ),
                 ),

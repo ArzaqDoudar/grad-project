@@ -6,7 +6,7 @@ import '../../core/localization/changelocal.dart';
 
 class SecTopBar extends GetView<LoacleController> {
   const SecTopBar({
-    super.key, 
+    super.key,
     required this.label,
   });
   final String label;
@@ -17,6 +17,10 @@ class SecTopBar extends GetView<LoacleController> {
       backgroundColor: ColorApp.blue,
       title: Text(label),
       centerTitle: true,
+      // leading: IconButton(
+      //   icon: const Icon(Icons.arrow_back),
+      //   onPressed: () {},
+      // ),
     );
   }
 }

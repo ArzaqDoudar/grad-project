@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
+
 import '/core/constant/routes.dart';
-import '/view/screen/auth/onboarding.dart';
 
 import '/binding/initialbinding.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,18 @@ import 'route.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
+      apiKey: 'AIzaSyAh79VhvVYuo62dWcugeURffQlo30dEyk4',
+      appId: '1:123653352461:web:dc7899ea9c17e7f4473944',
+      messagingSenderId: '123653352461',
+      projectId: 'diabetes-companion-944a8',
+      storageBucket: 'diabetes-companion-944a8.appspot.com',
+    ));
+  } else {
+    await Firebase.initializeApp();
+  }
   await initialServies();
   runApp(const MyApp());
 }

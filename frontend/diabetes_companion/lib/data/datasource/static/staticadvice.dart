@@ -8,4 +8,9 @@ List<AdviceModel> adviceModelList = [
     text: AdvicesText.adviceOneText,
     image: ImageAsset.adviceImageOne,
   ),
+  AdviceModel(
+    title: '',
+    text: AdvicesText.adviceOneText,
+    image: ImageAsset.adviceImageOne,
+  ),
 ];

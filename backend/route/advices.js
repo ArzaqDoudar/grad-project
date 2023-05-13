@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router();
+const cors = require('cors');
 
 const {getAllAdvices , insertAdvice ,deleteAdvice, getAdvice , updateAdvice} = require('../controller/advices');
 

@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
-
 void loginUser(emailController, passwordController) async {
   if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
     var loginBody = {

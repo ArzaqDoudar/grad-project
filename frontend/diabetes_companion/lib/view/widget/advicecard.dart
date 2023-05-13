@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../core/constant/imageasset.dart';
 
 class AdviceCard extends StatelessWidget {
-  final key1 = GlobalKey();
+  // final GlobalKey key1 = GlobalKey();
   final String text;
   final String? image;
   AdviceCard({
@@ -16,7 +16,7 @@ class AdviceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     return Card(
-      key: key1,
+      // key: key1,
       color: Colors.white,
       elevation: 8.0,
       borderOnForeground: true,

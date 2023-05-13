@@ -1,6 +1,4 @@
-import 'package:diabetes_companion/core/class/statusrequest.dart';
-
-import '../../../core/functions/alertexitapp.dart';
+import '../../../core/class/handlingdataview.dart';
 import '/core/functions/validinput.dart';
 
 import '../../../controller/auth/logincontroller.dart';
@@ -18,99 +16,106 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LoginControllerImp controller = Get.put(LoginControllerImp());
+    Get.put(LoginControllerImp());
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Center(
-        child: Stack(
-          children: <Widget>[
-            Container(
-              alignment: Alignment.center,
-              child: const Image(
-                image: AssetImage(ImageAsset.loginImage),
-                fit: BoxFit.cover,
-                height: double.infinity,
-                width: double.infinity,
+        body: GetBuilder<LoginControllerImp>(
+      builder: (controller) => HandlingDataView(
+        statusRequest: controller.statusRequest,
+        widget: Center(
+          child: Stack(
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                child: const Image(
+                  // image: NetworkImage(
+                  //     'https://demo-bucket.eu-central-1.linodeobjects.com/Test.png'),
+                  // 'https://link.storjshare.io/jux4cesi54tvwuf4rr5riltwpboa/diabetes-companion/avatar.png'),
+                  image: AssetImage(ImageAsset.loginImage),
+                  fit: BoxFit.cover,
+                  height: double.infinity,
+                  width: double.infinity,
+                ),
               ),
-            ),
-            // GetBuilder<LoginControllerImp>(
-            //   builder: (controller) => controller.statusRequest ==
-            //           StatusRequest.loading
-            //       ? const Center(
-            //           child: Text('Loading ...'),
-            //         )
-            //       :
-            Form(
-              key: controller.formstatelogin,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      TextFieldAuth(
-                        valid: (val) {
-                          return validInput(val!, 'email', 0, 50);
-                        },
-                        textEditingController: controller.email,
-                        passwordVisible: false,
-                        lable: 'البريد الإلكتروني',
-                        icon: const Icon(
-                          Icons.email_outlined,
-                          color: ColorApp.blue,
+              Form(
+                key: controller.formstatelogin,
+                child: Padding(
+                  padding: screenWidth > 700
+                      ? const EdgeInsets.symmetric(horizontal: 100)
+                      : const EdgeInsets.symmetric(horizontal: 25),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Column(
+                          children: [
+                            TextFieldAuth(
+                              type: TextInputType.emailAddress,
+                              valid: (val) {
+                                return validInput(val!, 'email', 0, 50);
+                              },
+                              textEditingController: controller.email,
+                              passwordVisible: false,
+                              lable: 'البريد الإلكتروني',
+                              icon: const Icon(
+                                Icons.email_outlined,
+                                color: ColorApp.blue,
+                              ),
+                            ),
+                            const SizedBox(height: 7),
+                            TextFieldAuth(
+                              valid: (val) {
+                                return validInput(val!, 'password', 0, 50);
+                              }, // TODO edit this
+                              textEditingController: controller.password,
+                              passwordVisible: true,
+                              lable: 'كلمة المرور',
+                              icon: const Icon(
+                                Icons.lock_outline_rounded,
+                                color: ColorApp.blue,
+                              ),
+                            ),
+                            const SizedBox(height: 7),
+                          ],
                         ),
-                      ),
-                      const SizedBox(height: 7),
-                      TextFieldAuth(
-                        valid: (val) {
-                          return validInput(val!, 'password', 0, 50);
-                        }, // TODO edit this
-                        textEditingController: controller.password,
-                        passwordVisible: true,
-                        lable: 'كلمة المرور',
-                        icon: const Icon(
-                          Icons.lock_outline_rounded,
-                          color: ColorApp.blue,
+                        ButtonAuth(
+                          label: 'تسجيل الدخول',
+                          onPressedFun: () {
+                            controller.login();
+                          },
                         ),
-                      ),
-                      const SizedBox(height: 7),
-                      ButtonAuth(
-                        label: 'تسجيل الدخول',
-                        onPressedFun: () {
-                          controller.login();
-                        },
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomTextButton(
-                            label: 'هل نسيت كلمة المرور؟',
-                            onPressedFun: () {
-                              controller.goToForgetPassword();
-                            },
-                          ),
-                          CustomTextButton(
-                            label: 'ليس لديك حساب؟',
-                            onPressedFun: () {
-                              controller.goToSignUp();
-                            },
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).viewInsets.bottom == 0
-                            ? 50
-                            : 0,
-                      ),
-                    ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CustomTextButton(
+                              label: 'هل نسيت كلمة المرور؟',
+                              onPressedFun: () {
+                                controller.goToForgetPassword();
+                              },
+                            ),
+                            CustomTextButton(
+                              label: 'ليس لديك حساب؟',
+                              onPressedFun: () {
+                                controller.goToSignUp();
+                              },
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).viewInsets.bottom == 0
+                              ? 50
+                              : 0,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            // ),
-          ],
+            ],
+          ),
         ),
       ),
-    );
+    ));
   }
 }
