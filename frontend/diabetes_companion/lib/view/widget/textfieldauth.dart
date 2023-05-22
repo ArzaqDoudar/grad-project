@@ -11,6 +11,7 @@ class TextFieldAuth extends StatelessWidget {
   final String? Function(String?)? valid;
   final text = "";
   final String? value;
+  final int? maxLinesNum;
   const TextFieldAuth({
     super.key,
     required this.lable,
@@ -20,6 +21,7 @@ class TextFieldAuth extends StatelessWidget {
     required this.textEditingController,
     this.valid,
     this.value,
+    this.maxLinesNum,
   });
 
   @override
@@ -38,6 +40,8 @@ class TextFieldAuth extends StatelessWidget {
         ),
         textDirection: TextDirection.rtl,
         keyboardType: type,
+        minLines: 1,
+        maxLines: maxLinesNum ?? 1,
         decoration: InputDecoration(
           // errorText: isNotValidate ? 'enter data' : null,
           filled: true,
@@ -80,6 +84,7 @@ class TextFieldAuth extends StatelessWidget {
           ),
           iconColor: ColorApp.blue,
           suffixIcon: icon,
+          // prefixIcon: Icon(Icons.abc),
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         ),

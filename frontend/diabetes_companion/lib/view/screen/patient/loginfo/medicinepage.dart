@@ -21,14 +21,7 @@ class MedicinePage extends StatelessWidget {
                   children: [
                     const Text(
                       'أضف دواء جديد',
-                      style: TextStyle(
-                          fontFamily: 'Amiri',
-                          color: ColorApp.blue,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 30),
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
-                      softWrap: true,
+                      style: TextStyle(color: ColorApp.blue, fontSize: 30),
                     ),
                     const SizedBox(
                       height: 15,
@@ -53,7 +46,7 @@ class MedicinePage extends StatelessWidget {
                       child: const Icon(Icons.add),
                     ),
                     const SizedBox(
-                      height: 35,
+                      height: 10,
                     ),
                     const Divider(
                       color: Colors.blueGrey,

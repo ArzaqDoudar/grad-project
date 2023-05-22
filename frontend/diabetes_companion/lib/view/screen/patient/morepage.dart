@@ -11,11 +11,13 @@ import 'loginfo/carbspage.dart';
 import 'loginfo/medicinepage.dart';
 
 class MorePage extends StatelessWidget {
-  MorePage({super.key});
-  int index = 2;
+  const MorePage({super.key});
+  static int index = 2;
 
   @override
   Widget build(BuildContext context) {
+    final screenwidth = MediaQuery.of(context).size.width;
+
     Get.put(AddLogsControllerImp());
     return GetBuilder<AddLogsControllerImp>(
       builder: (controller) => Scaffold(
@@ -70,8 +72,10 @@ class MorePage extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: BottomBar(
-            id: controller.id!, email: controller.email!, index: index),
+        bottomNavigationBar: screenwidth < 1000
+            ? BottomBar(
+                id: controller.id!, email: controller.email!, index: index)
+            : null,
       ),
     );
   }

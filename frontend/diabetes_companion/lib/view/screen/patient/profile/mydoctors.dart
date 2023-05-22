@@ -99,9 +99,20 @@ class MyDoctors extends StatelessWidget {
                                   const Divider(
                                     color: Colors.blueGrey,
                                   ),
-                                  Column(
-                                    children: controller.mydoctorslist,
-                                  )
+                                  if (controller.mydoctorslist.isNotEmpty)
+                                    Column(
+                                      children: controller.mydoctorslist,
+                                    )
+                                  else
+                                    const Center(
+                                      child: Text(
+                                        'لا يوجد معلومات',
+                                        style: TextStyle(
+                                          color: ColorApp.grey,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    )
                                 ],
                               ),
                             ),

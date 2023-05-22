@@ -2,34 +2,43 @@ const ADVICE = require('../model/advices.model')
 
 module.exports = {
     insertAdvice: async (req, res) => { // done
-        const textExist = await ADVICE.findOne({ text: req.body.text });
-        if (textExist) {
-            res.json({ msg: 'this advice is already exist' });
+        const doctor_id = req.body.doctor_id;
+        const text = req.body.text;
+        const description = req.body.description;
+        const diabetes_type = req.body.diabetes_type;
+        const tag = req.body.tag;
+
+        // const textExist = await ADVICE.findOne({ text: text });
+        // if (textExist) {
+        //     res.json({ msg: 'this advice is already exist' });
+        // } else {
+        const advice = await new ADVICE({
+            text: text,
+            description: description,
+            tag: tag,
+            diabetes_type: diabetes_type,
+            doctor_id: doctor_id,
+            // image: image,
+        }).save();
+        if (advice) {
+            res.json(
+                {
+                    status:true,
+                    msg: 'inserted successfully',
+                    text: advice.text,
+                    description: advice.description,
+                    image: advice.image,
+                }
+            )
         } else {
-            const advice = await new ADVICE({
-                text: req.body.text,
-                image: req.body.image,
-                description: req.body.description
-            }).save();
-            if (advice) {
-                res.json(
-                    {
-                        status: 'success',
-                        msg: 'inserted successfully',
-                        text: advice.text,
-                        description: advice.description,
-                        image: advice.image,
-                    }
-                )
-            } else {
-                res.json(
-                    {
-                        status: 'failure',
-                        msg: 'advice not inserted',
-                    }
-                )
-            }
+            res.json(
+                {
+                    status: false,
+                    msg: 'advice not inserted',
+                }
+            )
         }
+        // }
     },
     updateAdvice: async (req, res, next) => {
         const id = req.body.id;
@@ -102,22 +111,40 @@ module.exports = {
 
 
 
+
     getAdvice: async (req, res) => { // done
-        const id = req.params.id;
-        const advice = await ADVICE.findById(id);
-        if (advice) {
+        // const collectionSize = await ADVICE.countDocuments();
+        // const randomIndex = Math.floor(Math.random() * collectionSize);
+        var array = [];
+        const advices = await ADVICE.find(); // add discription
+        if (advices.length == 0) {
             res.json({
-                status: 'success',
-                id: advice.id,
-                text: advice.text,
-                description: advice.description,
-                image: advice.image,
-                diabetes_type: advice.diabetes_type,
-                doctor_id: advice.doctor_id
+                status: 'failure',
+                msg: "advices table is empty"
+            });
+        } else {
+            advices.forEach(advice => {
+                array.push(advice.id)
+            });
+        }
+        // const randomElement = array[0];
+        const randomElement = array[Math.floor(Math.random() * array.length)];
+
+        const randomAdvice = await ADVICE.findById(randomElement);
+
+        console.log('random advice = ' + randomAdvice);
+        console.log('random advice = ' + randomAdvice.description);
+
+        if (randomAdvice) {
+            res.json({
+                status: true,
+                advicetext: randomAdvice.text,
+                advicedescription: randomAdvice.description,
+                adviceimage: randomAdvice.image,
             })
         } else {
             res.json({
-                status: 'failure',
+                status: false,
                 msg: 'this advice is not exist'
             });
         }

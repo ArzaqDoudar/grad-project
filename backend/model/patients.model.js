@@ -8,7 +8,7 @@ var patient = new mongoose.Schema({
     password: { type: String, require: true },
     diabetes_type: { type: String },
     avatar: { type: String },
-    birthdate: { type: Date },
+    birthdate: { type: Date , require : false },
     phone: { type: Number },
     doctor_id: { type: String },
     gender: { type: String },

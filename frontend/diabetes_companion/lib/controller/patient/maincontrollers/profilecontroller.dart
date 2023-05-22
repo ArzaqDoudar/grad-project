@@ -6,6 +6,7 @@ import '../../../core/functions/calculateage.dart';
 import '../../../core/functions/handlingdatacontroller.dart';
 import '../../../data/datasource/remote/patient/profile/profile.dart';
 import '../../../linkapi.dart';
+import '../../../view/widget/mydoctorline.dart';
 import '../../../view/widget/profileline.dart';
 import '/core/constant/routes.dart';
 import 'package:get/get.dart';
@@ -51,6 +52,7 @@ class ProfileControllerImp extends ProfileController {
     id = Get.arguments["id"]; // change this to id
     email = Get.arguments["email"]; // change this to id
     name = '';
+
     getData();
     update();
     super.onInit();
@@ -83,12 +85,6 @@ class ProfileControllerImp extends ProfileController {
         kidneydisease = response["kidneydisease"];
         greasy = response["greasy"];
 
-        print('name');
-        print(name);
-        print(diabetestype);
-        print(phone);
-        print('response["birthdate"]');
-        print(response["birthdate"]);
         if (diabetestype == "1") {
           diabetestypeData = ' النوع الاول';
         } else if (diabetestype == "2") {
@@ -226,19 +222,44 @@ class ProfileControllerImp extends ProfileController {
   goToMyDoctors() async {
     statusRequest = StatusRequest.loading;
     update();
-    print('000000000000000000000000000000000000000');
-    print(LinkApp.getPatientsDoctors);
-    print('000000000000000000000000000000000000000');
     var response = await profileData.getPatientsDoctors(id!);
 
     statusRequest = handlingData(response);
     print("response after handle= $response");
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == true) {
+        List<MyDoctorLine> mydoctorslist = [];
+        final doctors = response['doctors'];
+        for (var doctor in doctors) {
+          print(doctor['name']);
+          print(doctor);
+          final doctorName = doctor['name'];
+          final doctorPhone = doctor['phone'];
+          final doctorSpeciality = doctor['speciality'];
+          final doctorLocation = doctor['location'] ?? '';
+          final doctorEmail = doctor['email'] ?? '';
+
+          final mydoctorWedget = MyDoctorLine(
+            name: doctorName,
+            phone: doctorPhone.toString(),
+            specialty: doctorSpeciality,
+            email: doctorEmail,
+            location: doctorLocation,
+          );
+          mydoctorslist.add(mydoctorWedget);
+          print('mydoctorslist $mydoctorslist');
+          // update();
+        }
         Get.offNamed(RouteApp.mydoctors, arguments: {
           'id': id,
           'email': email,
-          'doctors': response['doctors'],
+          'doctors': mydoctorslist,
+        });
+      } else {
+        Get.offNamed(RouteApp.mydoctors, arguments: {
+          'id': id,
+          'email': email,
+          'doctors': null,
         });
       }
     }

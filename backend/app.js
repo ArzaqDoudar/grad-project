@@ -35,14 +35,16 @@ const routePatients = require('./route/patients');
 const routeDoctors = require('./route/doctors');
 const routeAdvices = require('./route/advices');
 const routeSignUp = require('./route/signup');
+const routeAddLogs = require('./route/addlogs');
 const routePatientsProfile = require('./route/patientprofile'); 
 
 app.use('/' ,cors(), routePublic); // this is middelware
-app.use('/patients' , cors(), routePatients); // this is middelware
-app.use('/patients/profile' , cors(), routePatientsProfile); // this is middelware
-app.use('/doctors' , cors(), routeDoctors); // this is middelware
-app.use('/advices' , cors(), routeAdvices); // this is middelware
-app.use('/signup' , cors(), routeSignUp); // this is middelware
+app.use('/patients' , cors(), routePatients);
+app.use('/patients/profile' , cors(), routePatientsProfile); 
+app.use('/doctors' , cors(), routeDoctors); 
+app.use('/advices' , cors(), routeAdvices); 
+app.use('/signup' , cors(), routeSignUp); 
+app.use('/addlogs' , cors(), routeAddLogs); 
 app.get('/test', async (req, res, next) => {
     const id = req.body.id;
     const link = req.body.link;

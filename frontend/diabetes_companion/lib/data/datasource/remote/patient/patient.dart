@@ -4,7 +4,7 @@ import '/core/class/crud.dart';
 class PatientData {
   Crud crud;
   PatientData(this.crud);
-  postData(String id) async {
+  getPatientDoctor(String id) async {
     var response = await crud.postData(LinkApp.getPatientDoctor, {
       'id': id,
     });

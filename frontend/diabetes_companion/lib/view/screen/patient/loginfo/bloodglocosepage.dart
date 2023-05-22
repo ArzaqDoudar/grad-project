@@ -39,12 +39,52 @@ class BloodGlucosePage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              TextFieldAuth(
-                // valid: (val) {},
-                lable: "نسبة السكر في الدم",
-                passwordVisible: false,
-                type: TextInputType.number,
-                textEditingController: controller.glocoseController,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: TextFieldAuth(
+                  lable: "نسبة السكر في الدم",
+                  passwordVisible: false,
+                  type: TextInputType.number,
+                  textEditingController: controller.glocoseController,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: CustomDropDownTextField(
+                  controller: controller.tagController,
+                  items: const [
+                    DropDownValueModel(
+                        name: ' قبل الفطور', value: "before breakfast"),
+                    DropDownValueModel(
+                        name: 'بعد الفطور', value: "after breakfast"),
+                    DropDownValueModel(
+                        name: 'قبل الغداء', value: "before lunch"),
+                    DropDownValueModel(
+                        name: 'بعد الغداء', value: "after lunch"),
+                    DropDownValueModel(
+                        name: 'قبل العشاء ', value: "before dinner"),
+                    DropDownValueModel(
+                        name: 'بعد العشاء', value: "after dinner"),
+                    DropDownValueModel(
+                        name: 'قبل النوم', value: "before sleep"),
+                    DropDownValueModel(
+                        name: 'قبل وجبة خفيفة', value: "before a snack"),
+                    DropDownValueModel(
+                        name: 'بعد وجبة خفيفة', value: "after a snack"),
+                    DropDownValueModel(
+                        name: 'قبل النشاط الرياضي',
+                        value: "before sports activity"),
+                    DropDownValueModel(
+                        name: 'اثناء النشاط الرياضي',
+                        value: "during sports activity"),
+                    DropDownValueModel(
+                        name: 'بعد النشاط الرياضي',
+                        value: "after sports activity"),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -53,51 +93,9 @@ class BloodGlucosePage extends StatelessWidget {
                 textEditingController: controller.dateController,
                 now: true,
               ),
-              Text(
-                DateTime.now().toString(),
-                style: const TextStyle(color: ColorApp.blue, fontSize: 18),
-              ),
-              const Text(
-                'وقت الجرعة',
-                style: TextStyle(color: ColorApp.blue, fontSize: 18),
-              ),
-              CustomDropDownTextField(
-                controller: controller.tsgController,
-                items: const [
-                  DropDownValueModel(
-                      name: ' قبل الفطور', value: "before breakfast"),
-                  DropDownValueModel(
-                      name: 'بعد الفطور', value: "after breakfast"),
-                  DropDownValueModel(name: 'قبل الغداء', value: "before lunch"),
-                  DropDownValueModel(name: 'بعد الغداء', value: "after lunch"),
-                  DropDownValueModel(
-                      name: 'قبل العشاء ', value: "before dinner"),
-                  DropDownValueModel(name: 'بعد العشاء', value: "after dinner"),
-                  DropDownValueModel(name: 'قبل النوم', value: "before sleep"),
-                  DropDownValueModel(
-                      name: 'قبل وجبة خفيفة', value: "before a snack"),
-                  DropDownValueModel(
-                      name: 'بعد وجبة خفيفة', value: "after a snack"),
-                  DropDownValueModel(
-                      name: 'قبل النشاط الرياضي',
-                      value: "before sports activity"),
-                  DropDownValueModel(
-                      name: 'اثناء النشاط الرياضي',
-                      value: "during sports activity"),
-                  DropDownValueModel(
-                      name: 'بعد النشاط الرياضي',
-                      value: "after sports activity"),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 110),
-                child: ButtonAuth(
-                  label: 'حفظ',
-                  onPressedFun: () => controller.saveBloodGlocode(),
-                ),
+              ButtonAuth(
+                label: 'حفظ',
+                onPressedFun: () => controller.saveBloodGlocode(),
               ),
             ]),
           ),

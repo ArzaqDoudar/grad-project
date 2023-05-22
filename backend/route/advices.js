@@ -7,9 +7,9 @@ const {getAllAdvices , insertAdvice ,deleteAdvice, getAdvice , updateAdvice} = r
 
 // router.get('/test' , test);
 router.get('/' , getAllAdvices);
-router.post('/' , insertAdvice);
+router.post('/insertAdvice' , insertAdvice);
 router.delete('/:id' , deleteAdvice);
-router.get('/:id' , getAdvice);
+router.post('/getAdvice' , getAdvice);
 router.post('/updateAdvice' , updateAdvice);
 
 module.exports = router;

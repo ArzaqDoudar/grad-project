@@ -30,8 +30,10 @@ class RouteApp {
   //doctor
   static const String mainscreendoctor = "/mainscreendoctor";
   static const String profiledoctor = "/profiledoctor";
+  static const String editprofiledoctor = "/editprofiledoctor";
   static const String addadvice = "/addadvice";
   static const String homedoctor = "/homedoctor";
   static const String patient = "/patient";
-  static const String patientinfo = "/patientinfo";
+  static const String patientinformation = "/patientinformation";
+  static const String addpatient = "/addpatient";
 }

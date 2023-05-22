@@ -12,14 +12,16 @@ class AddLog extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          FilledButton(
+          ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 // elevation: 2,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(0),
                     side: const BorderSide(color: ColorApp.blue))),
-            onPressed: () {},
+            onPressed: () {
+              print('button');
+            },
             child: Center(
               child: Column(children: [
                 const SizedBox(height: 10),

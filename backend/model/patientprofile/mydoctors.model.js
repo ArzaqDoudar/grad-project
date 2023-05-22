@@ -5,7 +5,7 @@ var my_doctors =new mongoose.Schema({
     name: {type : String , require : true},
     speciality: {type : String , require : true},
     email: {type : String },
-    location: {type : String , require},
+    location: {type : String},
     phone: {type : Number },
 })
 

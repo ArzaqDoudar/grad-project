@@ -20,6 +20,18 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "auto_size_text",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/auto_size_text-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "booking_calendar",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/booking_calendar-1.1.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "boolean_selector",
       "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/boolean_selector-2.1.1",
       "packageUri": "lib/",
@@ -124,6 +136,12 @@
     {
       "name": "datetime_picker_formfield_new",
       "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/datetime_picker_formfield_new-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "dotted_border",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/dotted_border-2.0.0+3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -374,6 +392,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "nested",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/nested-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "octo_image",
       "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/octo_image-1.0.2",
       "packageUri": "lib/",
@@ -388,6 +412,18 @@
     {
       "name": "path",
       "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/path-1.8.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "path_drawing",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/path_drawing-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "path_parsing",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/path_parsing-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -458,6 +494,24 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "provider",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/provider-6.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "qr",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/qr-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "qr_flutter",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/qr_flutter-4.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "rxdart",
       "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/rxdart-0.27.7",
       "packageUri": "lib/",
@@ -504,6 +558,12 @@
       "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "simple_gesture_detector",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/simple_gesture_detector-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "sky_engine",
@@ -584,6 +644,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "table_calendar",
+      "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/table_calendar-3.0.8",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "term_glyph",
       "rootUri": "file:///home/arzaqziad/.pub-cache/hosted/pub.dev/term_glyph-1.2.1",
       "packageUri": "lib/",
@@ -644,7 +710,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-12T04:47:59.685958Z",
+  "generated": "2023-05-22T18:57:54.655404Z",
   "generator": "pub",
   "generatorVersion": "2.19.6"
 }

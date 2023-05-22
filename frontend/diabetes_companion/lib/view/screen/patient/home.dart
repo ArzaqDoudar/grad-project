@@ -3,21 +3,17 @@ import 'package:diabetes_companion/view/widget/bottombar.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:get/get.dart';
 
+import '../../widget/addlog.dart';
 import '../../widget/advicecard.dart';
 import '../../widget/datetime/basicdatetimefield.dart';
 import 'package:flutter/material.dart';
-import '../../widget/mydoctorline.dart';
 import '../../widget/topbar.dart';
-import '/data/datasource/static/staticadvice.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 // import 'auth/login.dart';
 
 class Home extends StatelessWidget {
-  Home({super.key});
-  int index = 0;
-
-  final TextEditingController dateController = TextEditingController();
-  final FocusNode searchFocusNode = FocusNode();
-  final FocusNode textFieldFocusNode = FocusNode();
+  const Home({super.key});
+  static int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -31,43 +27,51 @@ class Home extends StatelessWidget {
             email: controller.email!,
           ),
         ),
-        body: Container(
-          // color: Colors.red,
-          child: ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Column(
-                  children: [
-                    AdviceCard(
-                      text: adviceModelList[1].text,
-                      image: adviceModelList[1].image,
-                    ),
+        body: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                children: [
+                  AdviceCard(
+                    text: controller.text,
+                    description: controller.description,
+                    image: controller.image,
+                  ),
+                  // const AddLog(
+                  //   icon: Icons.abc,
+                  //   text: 'test',
+                  // ),
+                  // QrImage(
+                  //   data: controller.id!,
+                  //   version: QrVersions.auto,
+                  //   size: 150,
+                  //   // gapless: false,
+                  // ),
 
-                    // BasicDateField(),
-                    BasicDateTimeField(
-                      textEditingController: dateController,
-                    ),
+                  // BasicDateField(),
+                  // BasicDateTimeField(
+                  //   textEditingController: dateController,
+                  // ),
 
-                    CustomDropDownTextField(
-                        textFieldFocusNode: textFieldFocusNode,
-                        searchFocusNode: searchFocusNode),
-                    // ElevatedButton(
-                    //   onPressed: () {
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //         builder: (BuildContext context) => const Login(),
-                    //       ),
-                    //     );
-                    //   },
-                    //   child: const Text('Open route'),
-                    // ),
-                  ],
-                ),
+                  // CustomDropDownTextField(
+                  //     textFieldFocusNode: textFieldFocusNode,
+                  //     searchFocusNode: searchFocusNode),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (BuildContext context) => const Login(),
+                  //       ),
+                  //     );
+                  //   },
+                  //   child: const Text('Open route'),
+                  // ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         bottomNavigationBar: BottomBar(
             id: controller.id!, email: controller.email!, index: index),

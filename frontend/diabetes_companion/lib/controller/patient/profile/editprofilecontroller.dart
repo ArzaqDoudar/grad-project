@@ -20,14 +20,30 @@ abstract class EditProfileController extends GetxController {
 }
 
 class EditProfileControllerImp extends EditProfileController {
+  StatusRequest statusRequest = StatusRequest.none;
+
+  ProfileData profileData = ProfileData(Get.find());
+  EditProfileData editProfileData = EditProfileData(Get.find());
+
   late String? id;
   late String email;
   late TextEditingController name;
-  // late TextEditingController gender;
   late TextEditingController birthdate;
   late TextEditingController avatar;
   late TextEditingController phone;
   late SingleValueDropDownController diabetestype;
+  late DropDownValueModel diabetestypemodel;
+  bool heartdisease = false; // امراض القلب
+  bool bloodpressure = false; // ضغط الدم
+  bool kidneydisease = false; // امراض الكلى
+  bool greasy = false;
+
+  String _gender = '';
+  String get gender => _gender;
+  set gender(String value) {
+    _gender = value;
+    update();
+  }
 
   final ImagePicker picker = ImagePicker();
   XFile? image;
@@ -38,32 +54,10 @@ class EditProfileControllerImp extends EditProfileController {
   String? diabetestypedata;
   String? phonedata;
   String? avatardata;
-
-  bool heartdisease = false; // امراض القلب
-  bool bloodpressure = false; // ضغط الدم
-  bool kidneydisease = false; // امراض الكلى
-  bool greasy = false;
   late String heartdiseasedata;
   late String bloodpressuredata;
   late String kidneydiseasedata;
   late String greasydata;
-
-  String _gender = '';
-
-  String get gender => _gender;
-
-  set gender(String value) {
-    // print('the gender type = $value');
-    _gender = value;
-    update();
-    // print('the _gender type = $_gender');
-  }
-
-  String gendervalue = 'male';
-  StatusRequest statusRequest = StatusRequest.none;
-
-  ProfileData profileData = ProfileData(Get.find());
-  EditProfileData editProfileData = EditProfileData(Get.find());
 
   List data = [];
   @override
@@ -81,6 +75,34 @@ class EditProfileControllerImp extends EditProfileController {
     kidneydiseasedata = Get.arguments['kidneydisease'];
     greasydata = Get.arguments['greasy'];
 
+    name = TextEditingController();
+    birthdate = TextEditingController();
+    avatar = TextEditingController();
+    phone = TextEditingController();
+    diabetestype = SingleValueDropDownController();
+
+    if (diabetestypedata == "1") {
+      diabetestype.setDropDown(
+          const DropDownValueModel(name: 'النوع الأول', value: "1"));
+    } else if (diabetestypedata == "2") {
+      diabetestype.setDropDown(
+          const DropDownValueModel(name: 'النوع الثاني', value: "2"));
+    }
+    if (birthdatedata != null && birthdatedata!.isNotEmpty) {
+      List<String> date = birthdatedata!.split('T');
+      birthdate.text = date[0];
+    }
+    if (namedata != null) {
+      name.text = namedata!;
+    }
+    if (phonedata != null) {
+      if (phonedata != "0") {
+        phone.text = phonedata!;
+      }
+    }
+    if (genderdata != null) {
+      gender = genderdata!;
+    }
     if (heartdiseasedata == 'true') {
       heartdisease = true;
       update();
@@ -97,13 +119,8 @@ class EditProfileControllerImp extends EditProfileController {
       greasy = true;
       update();
     }
-    name = TextEditingController();
-    // gender = TextEditingController();
-    birthdate = TextEditingController();
-    avatar = TextEditingController();
-    phone = TextEditingController();
-    diabetestype = SingleValueDropDownController();
-    // getDate();
+    if (namedata != null) {}
+    if (namedata != null) {}
     update();
     super.onInit();
   }
@@ -122,57 +139,32 @@ class EditProfileControllerImp extends EditProfileController {
   edit() async {
     statusRequest = StatusRequest.loading;
     update();
-    if (name.text.isNotEmpty) {
-      namedata = name.text;
-    }
-    if (phone.text.isNotEmpty) {
-      phonedata = phone.text;
-    }
-    if (avatar.text.isNotEmpty) {
-      avatardata = avatar.text;
-    }
-    if (greasy) {
-      greasydata = 'true';
-    } else {
-      greasydata = 'false';
-    }
+    heartdiseasedata = heartdisease ? 'true' : 'false';
+    kidneydiseasedata = kidneydisease ? 'true' : 'false';
+    bloodpressuredata = bloodpressure ? 'true' : 'false';
+    greasydata = greasy ? 'true' : 'false';
 
-    if (heartdisease) {
-      heartdiseasedata = 'true';
-    } else {
-      heartdiseasedata = 'false';
+    if (birthdate.text.isEmpty) {
+      birthdate.text = '';
     }
-
-    if (kidneydisease) {
-      kidneydiseasedata = 'true';
-    } else {
-      kidneydiseasedata = 'false';
+    if (phone.text.isEmpty) {
+      phone.text = "0";
     }
-
-    if (bloodpressure) {
-      bloodpressuredata = 'true';
-    } else {
-      bloodpressuredata = 'false';
-    }
-
-    if (gender != '') {
-      genderdata = gender;
-    }
-    if (birthdate.value.text.isNotEmpty) {
-      List<String> date = birthdate.value.text.split('-');
-
-      birthdatedata = "${date[0]}-${date[1]}-${date[2]}";
-    }
+    // if (gender.isEmpty) {
+    //   gender = '0';
+    // }
     if (diabetestype.dropDownValue != null) {
       diabetestypedata = diabetestype.dropDownValue!.value;
+    } else {
+      diabetestypedata = "0";
     }
     var response = await editProfileData.postData(
       id!,
-      namedata!,
+      name.text,
       'avatar.png',
-      phonedata!,
-      birthdatedata.toString(),
-      genderdata!,
+      phone.text,
+      birthdate.text,
+      gender,
       diabetestypedata!,
       heartdiseasedata,
       bloodpressuredata,
@@ -198,11 +190,12 @@ class EditProfileControllerImp extends EditProfileController {
       print('statusRequest = $statusRequest');
       print('response error');
     }
+    update();
   }
 
   @override
   goToResetPassword() {
-    Get.offNamed(RouteApp.resetpassword, arguments: {
+    Get.toNamed(RouteApp.resetpassword, arguments: {
       'id': id,
       'email': email,
     });
@@ -282,12 +275,4 @@ class EditProfileControllerImp extends EditProfileController {
     }
     update();
   }
-
-  // @override
-  // backToProfile() {
-  //   Get.offNamed(RouteApp.profile, arguments: {
-  //     'id': id,
-  //     'email': email,
-  //   });
-  // }
 }

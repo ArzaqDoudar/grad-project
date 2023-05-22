@@ -6,12 +6,7 @@ import '../../../widget/buttonauth.dart';
 import '../../../widget/textfieldauth.dart';
 
 class AddNewDoctor extends StatelessWidget {
-  AddNewDoctor({super.key});
-  // TextEditingController doctornamecontroller = TextEditingController();
-  // TextEditingController specialitycontroller = TextEditingController();
-  // TextEditingController phonecontroller = TextEditingController();
-  // TextEditingController emailcontroller = TextEditingController();
-  // TextEditingController locationcontroller = TextEditingController();
+  const AddNewDoctor({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +33,6 @@ class AddNewDoctor extends StatelessWidget {
                     height: 70,
                   ),
                   TextFieldAuth(
-                    // valid: (val) {},
                     textEditingController: controller.name,
                     lable: "اسم الطبيب",
                     passwordVisible: false,
@@ -48,7 +42,6 @@ class AddNewDoctor extends StatelessWidget {
                     height: 20,
                   ),
                   TextFieldAuth(
-                    // valid: (val) {},
                     textEditingController: controller.specialty,
                     lable: "التخصص",
                     passwordVisible: false,
@@ -80,8 +73,7 @@ class AddNewDoctor extends StatelessWidget {
                   TextFieldAuth(
                     textEditingController: controller.phone,
                     lable: "رقم الهاتف المحمول",
-                    // passwordVisible: false,
-                    type: TextInputType.phone,
+                    type: TextInputType.number,
                   ),
                   const SizedBox(
                     height: 20,
@@ -89,14 +81,12 @@ class AddNewDoctor extends StatelessWidget {
                   TextFieldAuth(
                     textEditingController: controller.email,
                     lable: "البريد الالكتروني",
-                    // passwordVisible: false,
                     type: TextInputType.emailAddress,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   TextFieldAuth(
-                    // valid: (val) {},
                     textEditingController: controller.location,
                     lable: "العنوان",
                     type: TextInputType.streetAddress,

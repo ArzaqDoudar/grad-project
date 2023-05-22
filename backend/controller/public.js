@@ -9,6 +9,7 @@ module.exports = {
         const password = req.body.password;
         const patient = await PATIENT.findOne({ email: email });
         if (patient) {
+            console.log('login as patient');
             // return patient 
             if (patient.active) {
                 if (password == patient.password) {
@@ -23,6 +24,8 @@ module.exports = {
         } else {
             const doctor = await DOCTOR.findOne({ '$and': [{ email: email }, { password: password }] });
             if (doctor) {
+
+                console.log('login as doctor');
                 if (password == doctor.password) {
                     res.json({ status: true, type: "doctor", user: doctor })
                 } else {
@@ -31,6 +34,8 @@ module.exports = {
             } else {
                 const admin = await ADMIN.findOne({ '$and': [{ email: email }, { password: password }] });
                 if (admin) {
+
+                    console.log('login as admin');
                     // returm admin
                     if (password == admin.password) {
                         res.json({ status: true, type: "admin", user: admin })

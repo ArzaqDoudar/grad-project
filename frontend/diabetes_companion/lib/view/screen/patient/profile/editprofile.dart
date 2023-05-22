@@ -31,7 +31,7 @@ class EditProfile extends StatelessWidget {
         backgroundColor: ColorApp.white,
         appBar: AppBar(
           backgroundColor: ColorApp.blue,
-          title: const Text('المعلومات الشخصية'),
+          title: const Text('تعديل المعلومات الشخصية'),
           centerTitle: true,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
@@ -43,12 +43,6 @@ class EditProfile extends StatelessWidget {
             },
           ),
         ),
-        // const PreferredSize(
-        //   preferredSize: Size.fromHeight(50.0),
-        //   child: SecTopBar(
-        //     label: 'المعلومات الشخصية',
-        //   ),
-        // ),
         body: HandlingDataView(
           statusRequest: controller.statusRequest,
           widget: SingleChildScrollView(
@@ -63,8 +57,10 @@ class EditProfile extends StatelessWidget {
                         height: 120,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
-                          child: const Image(
-                            image: AssetImage(ImageAsset.avatarPatient),
+                          child: Image(
+                            image: AssetImage(controller.gender == 'female'
+                                ? ImageAsset.avatarPatientfemale
+                                : ImageAsset.avatarPatient),
                           ),
                         ),
                       ),
@@ -102,15 +98,6 @@ class EditProfile extends StatelessWidget {
                     height: 50,
                   ),
                   const Divider(),
-                  // controller.image == null
-                  //     ? Container()
-                  //     : Image.file(
-                  //         // 'http://localhost:43401/c4f5d2c5-4466-4f76-a936-0775599a793a'),
-                  //         File(
-                  //             '/home/arzaqziad/grad-prod/frontend/diabetes_companion/assets/images/nurse.png'),
-                  //       ),
-                  // // : Image.file(File(controller.image!.path)),
-                  // const Divider(),
                   const SizedBox(
                     height: 20,
                   ),
@@ -160,7 +147,8 @@ class EditProfile extends StatelessWidget {
                                   Radio(
                                     value: 'female',
                                     groupValue: controller.gender,
-                                    onChanged: (String? val) {},
+                                    onChanged: (String? val) =>
+                                        controller.gender = 'female',
                                     activeColor: ColorApp.blue,
                                   ),
                                   const SizedBox(
@@ -186,7 +174,6 @@ class EditProfile extends StatelessWidget {
                         height: 20,
                       ),
                       TextFieldAuth(
-                        // valid: (val) {},
                         lable: "رقم الجوال",
                         passwordVisible: false,
                         textEditingController: controller.phone,

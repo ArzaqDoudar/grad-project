@@ -17,7 +17,7 @@ module.exports = {
                         phone: doctor.phone,
                         speciality: doctor.speciality,
                         email: doctor.email,
-                        location: doctor.location,
+                        location: doctor.location, 
                     }
                 })
             })
@@ -40,11 +40,11 @@ module.exports = {
         const speciality = req.body.speciality;
         const phone = req.body.phone;
         const email = req.body.email;
-        const location = req.body.location; 
+        const location = req.body.location;  
 
         console.log('insert Doctor ');
         console.log('id '+id);
-        console.log('name '+name);
+        console.log('name '+name); 
         console.log('speciality '+speciality);
         console.log('phone '+phone);
         console.log('email '+email);
@@ -53,14 +53,15 @@ module.exports = {
         const mydoctor = await new MYDOCTORS({
             patientId: id,
             name: name,
+            speciality: speciality,
             email: email, 
             location: location,
-            speciality: speciality,
             phone: phone,
 
         }).save();
 
         if (mydoctor) {
+            console.log('mydoctor => ' + mydoctor);
             res.json({ status: true, msg: "تمت العملية بنجاح" })
         } else {
             res.json({ status: false, msg: "حدث خطأ !" })

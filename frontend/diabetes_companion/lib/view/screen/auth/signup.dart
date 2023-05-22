@@ -63,6 +63,7 @@ class Signup extends StatelessWidget {
                         textEditingController: controller.email,
                         lable: 'البريد الإلكتروني',
                         passwordVisible: false,
+                        type: TextInputType.emailAddress,
                         icon: const Icon(Icons.email_outlined,
                             color: ColorApp.blue),
                       ),

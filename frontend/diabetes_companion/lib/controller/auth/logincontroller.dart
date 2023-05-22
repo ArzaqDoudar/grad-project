@@ -78,13 +78,14 @@ class LoginControllerImp extends LoginController {
             'email': response['user']['email'],
           });
         } else if (response['type'] == 'doctor') {
-          Get.offNamed(RouteApp.mainscreendoctor, arguments: {
+          Get.offNamed(RouteApp.homedoctor, arguments: {
             'id': response['user']['_id'],
-            'email': email.text,
+            'email': response['user']['email'],
           });
-        } else if (response['type'] == 'admin') {
-          // TODO Login as Admin
         }
+        // else if (response['type'] == 'admin') {
+        //   // TODO Login as Admin
+        // }
       } else if (response['active'] == false) {
         Get.defaultDialog(
           title: 'ثثثثث',

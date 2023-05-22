@@ -6,24 +6,10 @@ import 'package:get/get.dart';
 
 import '../../widget/messageline.dart';
 
-// classpath 'com.google.gms:google-services:4.3.15'
 class ChatScreen extends StatelessWidget {
   ChatScreen({super.key});
 
-//   @override
-//   _ChatScreenState createState() => _ChatScreenState();
-// }
-
-// class _ChatScreenState extends State<ChatScreen> {
-  // final messageTextController = TextEditingController();
   final _firestore = FirebaseFirestore.instance;
-  // String? messageTextData;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     // getCurrentUser();
-//   }
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +46,6 @@ class ChatScreen extends StatelessWidget {
                         final messageSender = message.get('sender');
                         final messageReceiver = message.get('receiver');
 
-                        // print('messages  sender = $messageSender');
-                        // print('messages  receiver = $messageReceiver');
-                        // print(message.get('text'));
                         if (messageSender == controller.email &&
                                 messageReceiver == controller.secondEmail ||
                             messageSender == controller.secondEmail &&

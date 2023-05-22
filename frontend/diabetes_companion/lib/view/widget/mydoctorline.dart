@@ -31,64 +31,61 @@ class MyDoctorLine extends StatelessWidget {
         elevation: 3,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-            const SizedBox(
-              width: 30,
-            ),
-            SizedBox(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    "الإسم: $name",
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "التخصص: $specialty",
-                    style: const TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  Text(
-                    'رقم الهاتف: 0$phone ',
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
-
-                  email != null
-                      ? Text(
-                          "$email : البريد الإلكتروني ",
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w300),
-                        )
-                      : Container(),
-                  location != null
-                      ? Text(
-                          'العنوان: $location ',
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w300),
-                        )
-                      : Container(),
-                  // Text(
-                  //   'العنوان: ${location ?? "-----"}',
-                  //   style: const TextStyle(fontSize: 16, color: ColorApp.grey),
-                  // ),
-                ],
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              const SizedBox(
+                width: 30,
               ),
-            ),
-            const SizedBox(
-              width: 30,
-            ),
-            const CircleAvatar(
-              foregroundImage: NetworkImage(ImageAsset.avatarDoctor2),
-              radius: 39,
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            // const Icon(Icons.arrow_forward_ios_rounded),
-          ]),
+              SizedBox(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      "الإسم: $name",
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "التخصص: $specialty",
+                      style: const TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      'رقم الهاتف: 0$phone ',
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                    email != null && email!.isNotEmpty
+                        ? Text(
+                            "$email : البريد الإلكتروني ",
+                            style: const TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w300),
+                          )
+                        : Container(),
+                    location != null && location!.isNotEmpty
+                        ? Text(
+                            'العنوان: $location ',
+                            style: const TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w300),
+                          )
+                        : Container(),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                width: 30,
+              ),
+              const CircleAvatar(
+                foregroundImage: AssetImage(ImageAsset.avatarDoctor2),
+                radius: 39,
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -13,7 +13,7 @@ abstract class ExampleController extends GetxController {
 
 class ExampleControllerImp extends ExampleController {
   late String? id;
-  late String email;
+  late String? email;
   late TextEditingController name;
   late SingleValueDropDownController diabetestype;
   StatusRequest statusRequest = StatusRequest.none;

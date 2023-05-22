@@ -7,7 +7,6 @@ module.exports = {
         res.send('Patient Controller')
     },
     insertPatient: async (req, res) => { // done
-        console.log('req ==== ', req);
         const email = req.body.email;
         const password = req.body.password;
         const name = req.body.name;
@@ -23,6 +22,15 @@ module.exports = {
                 password: password,
                 code: code,
                 active: false,
+                phone: 0,
+                gender: "",
+                birthdate: "",
+                diabetes_type: 0,
+                doctor_id: '0',
+                heartdisease: "false",
+                bloodpressure: "false",
+                kidneydisease: "false",
+                greasy: "false",
 
             }).save();
 
@@ -264,24 +272,49 @@ module.exports = {
         const patient = await PATIENT.findById(id);
         if (patient) {
             console.log('doctor id == ' + patient.doctor_id)
-            const doctor = await DOCTOR.findById(patient.doctor_id);
-            if (doctor) {
-
-
-                res.json({
-                    status: true,
-                    // id: patient.id,
-                    // email: patient.email,
-                    doctor_id: patient.doctor_id,
-                    doctor_email: doctor.email,
-                    doctor_name: doctor.name,
-
-                })
-            } else {
-                res.json({ status: false, msg: "this doctor not exist " })
+            if (patient.doctor_id != '0') {
+                const doctor = await DOCTOR.findById(patient.doctor_id);
+                if (doctor) {
+                    res.json({
+                        status: true,
+                        doctor_id: patient.doctor_id,
+                        doctor_email: doctor.email,
+                        doctor_name: doctor.name,
+                    })
+                } else {
+                    res.json({ status: false, msg: "this doctor not exist" })
+                }
+            }else{
+                res.json({ status: false, msg: "no doctor" })
             }
         } else {
             res.json({ status: false, msg: "this patient is not exist" })
+        }
+    },
+    addDoctor: async (req, res) => { // done
+        const id = req.body.id; // patient id
+        const doctor_id = req.body.doctorId;
+        const patient = await PATIENT.findOne({ _id: id });
+        if (patient) {
+            console.log("patient id ==", patient.id)
+            // if (patient.password == oldPassword) {
+            const adddoctor = await PATIENT.findOneAndUpdate(
+                { _id: patient.id },
+                { $set: { doctor_id: doctor_id } },
+                { upsert: false, new: true },
+            );
+            console.log("doctor added successfuly", adddoctor)
+            if (adddoctor) {
+                res.json({ status: true, password: adddoctor });
+            } else {
+                res.json({ status: false, msg: "Doctor Not Added" });
+            }
+            // } else {
+            //     res.json({ status: false, msg: "Wrong Password" });
+            // }
+
+        } else {
+            res.json({ status: false, msg: "patient not exist" })
         }
     },
     editProfile: async (req, res, next) => { // done
@@ -300,9 +333,9 @@ module.exports = {
         const kidneydisease = req.body.kidneydisease;
         const greasy = req.body.greasy;
 
-        console.log('greasy ' .greasy);
+        console.log('greasy '.greasy);
 
-        const patient = await PATIENT.findOneAndUpdate( 
+        const patient = await PATIENT.findOneAndUpdate(
             { _id: id },
             {
                 $set: {
@@ -321,7 +354,7 @@ module.exports = {
             { upsert: false, new: true },
         );
         if (patient) {
-            console.log("patient " + patient.birthdate.getDay());
+            // console.log("patient " + patient.birthdate.getDay());
             res.json({ status: true, email: patient.email, id: patient.id });
         } else {
             console.log("patient " + patient);
@@ -340,4 +373,4 @@ module.exports = {
     },
 }
 
-// res.json({ status: false, msg: "not deleted" })checkemail
+ 

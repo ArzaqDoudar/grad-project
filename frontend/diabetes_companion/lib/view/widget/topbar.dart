@@ -6,7 +6,6 @@ import '../../core/class/statusrequest.dart';
 import '../../core/constant/color.dart';
 import '../../core/constant/routes.dart';
 import '../../core/functions/handlingdatacontroller.dart';
-import '../../core/localization/changelocal.dart';
 import '../../data/datasource/remote/patient/patient.dart';
 
 class TopBar extends StatelessWidget {
@@ -28,7 +27,7 @@ class TopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     goToChatScreen() async {
       statusRequest = StatusRequest.loading;
-      var response = await patientData.postData(id);
+      var response = await patientData.getPatientDoctor(id);
       statusRequest = handlingData(response);
       print("response after handle= $response");
       print('arzaq email');
@@ -48,19 +47,22 @@ class TopBar extends StatelessWidget {
         } else {
           print(response['msg']);
           print('no email');
-          Get.toNamed(RouteApp.nodoctorchat);
+          Get.toNamed(RouteApp.nodoctorchat, arguments: {
+            'id': id,
+          });
         }
       } else {
         print('statusRequest');
         print(statusRequest);
-        print(response['msg']);
-        Get.toNamed(RouteApp.nodoctorchat);
+        // print(response['msg']);
+        Get.toNamed(RouteApp.nodoctorchat, arguments: {
+          'id': id,
+        });
       }
       print('email from go to chat screen $email');
-
-      // TODO if Doctor id is not exist change the route
     }
 
+    final screenwidth = MediaQuery.of(context).size.width;
     return AppBar(
       elevation: 1,
       leading: IconButton(
@@ -78,6 +80,76 @@ class TopBar extends StatelessWidget {
       ),
       centerTitle: true,
       actions: <Widget>[
+        if (screenwidth > 1000)
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Get.offNamed(RouteApp.home, arguments: {
+                    'id': id,
+                    'email': email,
+                  });
+                },
+                icon: const Icon(
+                  Icons.home,
+                  color: ColorApp.white,
+                  size: 26,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  Get.offNamed(RouteApp.reportspages, arguments: {
+                    'id': id,
+                    'email': email,
+                  });
+                },
+                icon: const Icon(
+                  Icons.bar_chart_rounded,
+                  color: ColorApp.white,
+                  size: 26,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  Get.offNamed(RouteApp.morepages, arguments: {
+                    'id': id,
+                    'email': email,
+                  });
+                },
+                icon: const Icon(
+                  Icons.add_circle_outlined,
+                  color: ColorApp.white,
+                  size: 26,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  Get.offNamed(RouteApp.profile, arguments: {
+                    'id': id,
+                    'email': email,
+                  });
+                },
+                icon: const Icon(
+                  Icons.account_circle_rounded,
+                  color: ColorApp.white,
+                  size: 26,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  Get.offNamed(RouteApp.storespages, arguments: {
+                    'id': id,
+                    'email': email,
+                  });
+                },
+                icon: const Icon(
+                  Icons.store,
+                  color: ColorApp.white,
+                  size: 26,
+                ),
+              ),
+            ],
+          ),
         IconButton(
           icon: const Icon(
             Icons.notifications,
@@ -86,7 +158,7 @@ class TopBar extends StatelessWidget {
           onPressed: () {
             // TODO notifications
           },
-        )
+        ),
       ],
       backgroundColor: ColorApp.blue,
     );

@@ -21,7 +21,7 @@ class BasicDateTimeField extends StatelessWidget {
         borderRadius: BorderRadius.circular(80),
         //set border radius more than 50% of height and width to make circle
       ),
-      elevation: 4,
+      // elevation: 4,
       child: DateTimeField(
         // initialValue: now,
         // initialValue: DateTimeField.combine(
@@ -46,7 +46,7 @@ class BasicDateTimeField extends StatelessWidget {
             ),
           ),
           label: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: 0),
             child: Text(
               "اختر التاريخ والوقت",
               style: TextStyle(
@@ -61,7 +61,7 @@ class BasicDateTimeField extends StatelessWidget {
             color: ColorApp.blue,
           ),
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
         ),
         format: format,
         onChanged: (value) => {dateFunction(textEditingController)},

@@ -9,20 +9,25 @@ class PatientLine extends StatelessWidget {
     required this.name,
     required this.email,
     this.diabetestype,
-    this.avatar,
+    // this.avatar,
     required this.onPressedFun,
+    this.gender,
     // this.receiver
   });
   final String name;
   final String email;
   final int? diabetestype;
-  final String? avatar;
+  // final String? avatar;
+  final String? gender;
 
   final VoidCallback onPressedFun;
   // final bool? receiver;
 
   @override
   Widget build(BuildContext context) {
+    print('gender $gender');
+    print('male ${ImageAsset.avatarDoctor}');
+    print('female ${ImageAsset.avatarPatientfemale}');
     String diabetestypeData;
     if (diabetestype == 1) {
       diabetestypeData = ' النوع الاول';
@@ -31,6 +36,7 @@ class PatientLine extends StatelessWidget {
     } else {
       diabetestypeData = 'غير معرف';
     }
+
     return GestureDetector(
       onTap: onPressedFun,
       child: Card(
@@ -42,14 +48,15 @@ class PatientLine extends StatelessWidget {
               width: 20,
             ),
             CircleAvatar(
-              foregroundImage:
-                  NetworkImage(avatar ?? ImageAsset.adviceDefultImage),
+              foregroundImage: AssetImage(gender == 'female'
+                  ? ImageAsset.avatarPatientfemale
+                  : ImageAsset.avatarPatient),
               radius: 39,
             ),
             const SizedBox(
               width: 20,
             ),
-            Container(
+            SizedBox(
               width: 220,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

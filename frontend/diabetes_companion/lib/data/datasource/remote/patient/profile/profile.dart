@@ -23,7 +23,7 @@ class ProfileData {
     var response = await crud.postData(LinkApp.insertDoctor, {
       'patientId': id,
       'name': name,
-      'specialty': specialty,
+      'speciality': specialty,
       'email': email,
       'phone': phone,
       'location': location,

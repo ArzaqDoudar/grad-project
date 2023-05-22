@@ -1,77 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../core/constant/color.dart';
-import '../../widget/patient.dart';
-import '../../widget/searchtextfield.dart';
+import '../../../controller/doctor/patientscontroller.dart';
+import '../../../core/class/handlingdataview.dart';
+import '../../widget/bottombardoctor.dart';
+import '../../widget/topbardoctor.dart';
 
-class PatientsPage extends StatefulWidget {
+class PatientsPage extends StatelessWidget {
   const PatientsPage({super.key});
-
-  @override
-  State<PatientsPage> createState() => PatientsPageState();
-}
-
-class PatientsPageState extends State<PatientsPage> {
-  TextEditingController dateController = TextEditingController();
-  TextEditingController glocoseController = TextEditingController();
-
-  @override
-  void initState() {
-    dateController.text = ""; //set the initial value of text field
-    super.initState();
-  }
-
+  static int index = 2;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    Get.put(PatientsControllerImp());
+    return GetBuilder<PatientsControllerImp>(
+      builder: (controller) => Scaffold(
         backgroundColor: ColorApp.white,
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(25),
-            child: Center(
-              child: Column(
-                children: const [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "ابقى على اتطلاع بحالة مريضك",
-                    style: TextStyle(fontSize: 30, color: ColorApp.red),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  SearchTextField(
-                    title: 'ابحث عن مريض...',
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Patient(
-                    diabetesType: 'سكري نوع أول',
-                    patientAge: 25,
-                    patientName: 'سكري سكري',
-                  ),
-                  Divider(
-                    color: Colors.blueGrey,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Patient(
-                    diabetesType: 'سكري نوع أول',
-                    patientAge: 25,
-                    patientName: 'سكري سكري',
-                  ),
-                  Divider(
-                    color: Colors.blueGrey,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(50.0),
+          child: TopBarDoctor(
+            id: controller.id!,
+            email: controller.email!,
+            // title: 'المرضــى',
+          ),
+        ),
+        body: HandlingDataView(
+          statusRequest: controller.statusRequest,
+          widget: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(25),
+              child: Center(
+                child: Column(
+                  children: [
+                    const Text(
+                      'أضف مريض ',
+                      style: TextStyle(
+                        color: ColorApp.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    FilledButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: ColorApp.blue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding: const EdgeInsets.all(10),
+                        textStyle: const TextStyle(fontSize: 20),
+                        alignment: const Center().alignment,
+                      ),
+                      onPressed: () => controller.goToAddNewPatient(),
+                      child: const Icon(Icons.add),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Divider(
+                      color: Colors.blueGrey,
+                    ),
+                    Column(
+                      children: controller.patentWedgets,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ));
+        ),
+        bottomNavigationBar: BottomBarDoctor(
+            id: controller.id!, email: controller.email!, index: index),
+      ),
+    );
   }
 }

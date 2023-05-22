@@ -6,16 +6,12 @@ import '../../core/constant/color.dart';
 class CustomDropDownTextField extends StatelessWidget {
   const CustomDropDownTextField({
     super.key,
-    // this.textFieldFocusNode,
-    // this.searchFocusNode,
     required this.controller,
     required this.items,
   });
 
   final List<DropDownValueModel> items;
   final SingleValueDropDownController controller;
-  // final FocusNode? textFieldFocusNode;
-  // final FocusNode? searchFocusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +27,6 @@ class CustomDropDownTextField extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: DropDownTextField(
-            // const DropDownValueModel(name: ' اختر نوع السكري', value: "0"),
             controller: controller,
             clearOption: true,
             dropDownItemCount: items.length,
@@ -46,24 +41,5 @@ class CustomDropDownTextField extends StatelessWidget {
         ),
       ),
     );
-    //   return
-    // DropDownTextField(
-    //     controller: controller,
-    //     clearOption: true,
-    //     dropDownItemCount: 8,
-    //     // searchShowCursor: false,
-    //     enableSearch: true,
-    //     // searchKeyboardType: TextInputType.number,
-    //     dropDownList: const [
-    //       DropDownValueModel(name: 'النوع الأول', value: "1"),
-    //       DropDownValueModel(name: 'النوع الثاني', value: "2")
-    //     ],
-    //     onChanged: (val) {},
-    //     textStyle: const TextStyle(
-    //       fontSize: 20,
-    //       color: ColorApp.blue,
-    //     ),
-    //   );
-    // }
   }
 }

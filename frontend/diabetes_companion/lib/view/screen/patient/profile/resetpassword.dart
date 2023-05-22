@@ -48,8 +48,6 @@ class ResetPassword extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     TextFieldAuth(
-                      valid: (val) {},
-                      // isNotValidate: _isNotValidate,
                       textEditingController: controller.oldpassword,
                       passwordVisible: true,
                       lable: 'كلمة المرور القديمة',

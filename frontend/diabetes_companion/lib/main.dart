@@ -66,30 +66,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     LoacleController controller = Get.put(LoacleController());
-
-//     return GetMaterialApp(
-//       translations: MyTranslation(),
-//       debugShowCheckedModeBanner: false,
-//       theme: ThemeData(
-//         fontFamily: 'Amiri',
-//       ),
-//       locale: controller.language,
-//       title: 'Diabetec Companion',
-//       initialBinding: InitialBinding(),
-//       // home: const HomeScreen(),
-//       // home: const Startup(),
-//       // home: const TestPage(),
-//       // home: const TestView(),
-//       // routes: routes,
-//       getPages: routes,
-//     );
-//   }
-// }

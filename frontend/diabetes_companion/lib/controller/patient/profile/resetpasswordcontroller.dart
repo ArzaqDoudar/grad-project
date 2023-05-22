@@ -87,7 +87,6 @@ class ResetPasswordControllerImp extends ExampleController {
       }
       update();
     } else {
-      print('pass != confirm');
       Get.defaultDialog(
         title: 'تحذير',
         middleText: 'تحقق من كلمة المرور',

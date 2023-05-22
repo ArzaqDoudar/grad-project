@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+import '../../../../controller/doctor/editprofiledoctorcontroller.dart';
 import '/view/widget/buttonauth.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/constant/color.dart';
@@ -14,24 +16,19 @@ class EditProfileDoctor extends StatefulWidget {
 }
 
 class EditProfileDoctorState extends State<EditProfileDoctor> {
-  TextEditingController userNameController = TextEditingController();
-  TextEditingController userEmailController = TextEditingController();
-  TextEditingController userPhoneController = TextEditingController();
-
-  // Default Radio Button Selected Item When App Starts.
-  String radioButtonItem = 'ONE';
-
-  // Group Value for Radio Button.
-  int id = 1;
+  // int id = 1;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    Get.put(EditProfileDoctorControllerImp());
+
+    return GetBuilder<EditProfileDoctorControllerImp>(
+      builder: (controller) => Scaffold(
         extendBody: true,
         appBar: const PreferredSize(
           preferredSize: Size.fromHeight(50.0),
           child: SecTopBar(
-            label: 'المعلومات الشخصية',
+            label: 'تعديل المعلومات الشخصية',
           ),
         ),
         body: SingleChildScrollView(
@@ -89,30 +86,27 @@ class EditProfileDoctorState extends State<EditProfileDoctor> {
                 Form(
                   child: Column(children: [
                     TextFieldAuth(
-                      // valid: (val) {},
                       lable: "الاسم",
                       passwordVisible: false,
-                      textEditingController: userNameController,
+                      textEditingController: controller.name,
                       type: TextInputType.text,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     TextFieldAuth(
-                      // valid: (val) {},
-                      lable: "البريد الالكتروني",
+                      lable: "التخصص",
                       passwordVisible: false,
-                      textEditingController: userEmailController,
+                      textEditingController: controller.specialty,
                       type: TextInputType.emailAddress,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     TextFieldAuth(
-                      // valid: (val) {},
                       lable: "رقم الجوال",
                       passwordVisible: false,
-                      textEditingController: userEmailController,
+                      textEditingController: controller.phone,
                       type: TextInputType.phone,
                     ),
                     const SizedBox(
@@ -120,13 +114,7 @@ class EditProfileDoctorState extends State<EditProfileDoctor> {
                     ),
                     CustomTextButton(
                       label: 'تغيير كلمة السر',
-                      onPressedFun: () {
-                        // Navigator.of(context, rootNavigator: true)
-                        //     .pushAndRemoveUntil(
-                        //         MaterialPageRoute(
-                        //             builder: (context) => const ChangePass()),
-                        //         (route) => true);
-                      },
+                      onPressedFun: () {},
                     ),
                   ]),
                 ),
@@ -134,10 +122,12 @@ class EditProfileDoctorState extends State<EditProfileDoctor> {
                 const SizedBox(
                   height: 20,
                 ),
-                ButtonAuth(label: 'حفظ', onPressedFun: () {})
+                ButtonAuth(label: 'حفظ', onPressedFun: () => controller.edit())
               ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
