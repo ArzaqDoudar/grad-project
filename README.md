@@ -7,4 +7,6 @@ The app includes features such as:
 * finding nearby stores or restaurants that offer food suitable for dietary needs
 * connecting with healthcare experts, and getting reminders for medication doses.
   
-The app was developed as a graduation project by Farah Touqan Arzaq Doudar, presented in partial fulfillment of the requirements for a Bachelor's degree in Computer Engineering at An-Najah National University.
+The app was developed as a graduation project by Arzaq Doudar and Farah Touqan, presented in partial fulfillment of the requirements for a Bachelor's degree in Computer Engineering at An-Najah National University.
+
+[Demo Video Link](https://drive.google.com/file/d/1Cdfnsaj-GWkujW9dF9rFPoqxCUMldA5m/view?usp=sharing) 
