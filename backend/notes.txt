@@ -1,0 +1,13 @@
+req ==> to get data
+res ==> to send data
+
+
+we have 3 types of files :
+1. in controller folder
+2. in route folder
+3. in model folder
+
+
+the files in model folder is to create the schema.
+the files in route folder is to crete router using "express" and to send and get data 
+the files in controller use model files and create functions, then send this functions to router file to use in "app.js" file.

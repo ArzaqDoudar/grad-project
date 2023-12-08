@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "123653352461",
+    "project_id": "diabetes-companion-944a8",
+    "storage_bucket": "diabetes-companion-944a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123653352461:android:0fa66631d9a33602473944",
+        "android_client_info": {
+          "package_name": "com.diabetescompanion.diabetes_companion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123653352461-ofpph170hmvtc2i40udf383bchptkmkq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU-gHb7RknERdQYOnizDB6TZe0FkxpY_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123653352461-ofpph170hmvtc2i40udf383bchptkmkq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
