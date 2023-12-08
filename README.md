@@ -11,4 +11,4 @@ The app was developed as a graduation project by Arzaq Doudar and Farah Touqan, 
 
 Demo Videos Links: \
 [Patient side](https://drive.google.com/file/d/1Cdfnsaj-GWkujW9dF9rFPoqxCUMldA5m/view?usp=sharing) \
-[Doctor side](https://drive.google.com/file/d/1eAvNpzbTM-gps59hqW0nuGRAHQj1nlP4/view?usp=sharing) \
+[Doctor side](https://drive.google.com/file/d/1eAvNpzbTM-gps59hqW0nuGRAHQj1nlP4/view?usp=sharing) 
